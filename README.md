@@ -1,4 +1,4 @@
-# PH University Management Frontend (Modules 27 & 28)
+# University Management System Frontend
 
 This project is part of **PH University Management Frontend** course, covering React setup, layout structuring, routing, authentication, and state management with Redux.
 
