@@ -1,9 +1,7 @@
+import MainLayout from "./components/layout/MainLayout";
+
 function App() {
-  return (
-    <div>
-      <p>this is cool</p>
-    </div>
-  );
+  return <MainLayout />;
 }
 
 export default App;
