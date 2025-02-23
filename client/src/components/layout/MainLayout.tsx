@@ -4,24 +4,46 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, MenuProps } from "antd";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  UserOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: createElement(icon),
-  label: `nav ${index + 1}`,
-}));
+const items: MenuProps["items"] = [
+  {
+    key: 1,
+    label: "Dashboard",
+  },
+  {
+    key: 2,
+    label: "Profile",
+  },
+  {
+    key: 3,
+    label: "User Management",
+    children: [
+      {
+        key: 1,
+        label: "Create Admin",
+      },
+      {
+        key: 2,
+        label: "Create User",
+      },
+    ],
+  },
+  {
+    key: 4,
+    label: "Settings",
+  },
+];
 
 const MainLayout = () => {
   return (
-    <Layout>
+    <Layout
+      style={{
+        height: "100vh",
+      }}
+    >
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
@@ -32,7 +54,17 @@ const MainLayout = () => {
           console.log(collapsed, type);
         }}
       >
-        <div className="demo-logo-vertical" />
+        <div
+          style={{
+            color: "white",
+            height: "4rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h1>PH Uni</h1>
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -49,11 +81,11 @@ const MainLayout = () => {
               minHeight: 360,
             }}
           >
-            content
+            The main content
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          Creative Design ©{new Date().getFullYear()} Created by Md.Rasel
         </Footer>
       </Layout>
     </Layout>
