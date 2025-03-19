@@ -1,10 +1,12 @@
-export type UserName = {
+import { Model, Types } from 'mongoose';
+
+export type TUserName = {
   firstName: string;
   middleName: string;
   lastName: string;
 };
 
-export type Guardian = {
+export type TGuardian = {
   fatherName: string;
   fatherOccupation: string;
   fatherContactNo: string;
@@ -13,26 +15,36 @@ export type Guardian = {
   motherContactNo: string;
 };
 
-export type LocalGuardian = {
+export type TLocalGuardian = {
   name: string;
   occupation: string;
   contactNo: string;
   address: string;
 };
 
-export type Student = {
+export type TStudent = {
   id: string;
-  name: UserName;
-  gender: 'male' | 'female';
-  dateOfBirth?: string;
+  user: Types.ObjectId;
+  name: TUserName;
+  gender: 'male' | 'female' | 'other';
+  dateOfBirth?: Date;
   email: string;
   contactNo: string;
   emergencyContactNo: string;
   bloogGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
   presentAddress: string;
-  permanentAddres: string;
-  guardian: Guardian;
-  localGuardian: LocalGuardian;
+  permanentAddress: string;
+  guardian: TGuardian;
+  localGuardian: TLocalGuardian;
   profileImg?: string;
-  isActive: 'active' | 'blocked';
+  admissionSemester: Types.ObjectId;
+  academicDepartment: Types.ObjectId;
+  academicFaculty: Types.ObjectId;
+  isDeleted: boolean;
 };
+
+//for creating static
+export interface StudentModel extends Model<TStudent> {
+  // eslint-disable-next-line no-unused-vars
+  isUserExists(id: string): Promise<TStudent | null>;
+}
