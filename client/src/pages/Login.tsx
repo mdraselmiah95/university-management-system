@@ -1,8 +1,13 @@
 import { Button } from "antd";
 import { useForm } from "react-hook-form";
+import { useLoginMutation } from "../redux/features/auth/authApi";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
+
+  const [login, { data, error }] = useLoginMutation();
+
+  console.log({ data, error });
 
   const onSubmit = (data) => {
     console.log(data);
