@@ -12,7 +12,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      id: "0001",
+      id: "00001",
       password: "admin12345",
     },
   });
@@ -35,6 +35,8 @@ const Login = () => {
           token: res.data.accessToken,
         })
       );
+
+      console.log({ user });
       toast.success("Logged in", { id: toastId, duration: 2000 });
       navigate(`/${user.role}/dashboard`);
     } catch (err) {
