@@ -12,7 +12,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      id: "00001",
+      id: "0001",
       password: "admin12345",
     },
   });
@@ -36,10 +36,10 @@ const Login = () => {
         })
       );
 
-      console.log({ user });
       toast.success("Logged in", { id: toastId, duration: 2000 });
       navigate(`/${user.role}/dashboard`);
     } catch (err) {
+      console.log({ err });
       toast.error(`Something went wrong ${err}`, {
         id: toastId,
         duration: 2000,
