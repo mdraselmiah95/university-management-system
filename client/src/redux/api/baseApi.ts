@@ -46,11 +46,11 @@ const baseQueryWithRefreshToken: BaseQueryFn<
     const data = await res.json();
     console.log({ data });
   }
-  return result;
+  // return result;
 };
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: baseQueryWithRefreshToken,
+  baseQuery: baseQuery,
   endpoints: () => ({}),
 });
