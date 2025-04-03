@@ -12,12 +12,6 @@ import PHInput from "../components/form/PHInput";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const { register, handleSubmit } = useForm({
-  //   defaultValues: {
-  //     id: "A-0001",
-  //     password: "admin123",
-  //   },
-  // });
 
   const [login] = useLoginMutation();
 
