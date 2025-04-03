@@ -1,6 +1,12 @@
-import { FormProvider, useForm } from "react-hook-form";
+import { ReactNode } from "react";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
-const PHForm = ({ onSubmit, children }) => {
+type TFormProps = {
+  onSubmit: SubmitHandler<any>;
+  children: ReactNode;
+};
+
+const PHForm = ({ onSubmit, children }: TFormProps) => {
   const methods = useForm();
 
   return (
