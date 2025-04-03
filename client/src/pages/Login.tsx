@@ -12,6 +12,10 @@ import PHInput from "../components/form/PHInput";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const defaultValues = {
+    id: "A-0001",
+    password: "admin123",
+  };
 
   const [login] = useLoginMutation();
 
@@ -48,7 +52,7 @@ const Login = () => {
       style={{ width: "400px", margin: "auto", marginTop: "5%" }}
       title="Login"
     >
-      <PHForm onSubmit={onSubmit}>
+      <PHForm onSubmit={onSubmit} defaultValues={defaultValues}>
         <PHInput type="text" name="id" label="ID:" />
         <PHInput type="text" name="password" label="Password:" />
 
