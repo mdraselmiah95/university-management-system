@@ -28,12 +28,12 @@ console.log({ yearOptions });
 
 const CreateAcademicSemester = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    const name = nameOptions[Number(data.name) - 1].label;
+    const name = nameOptions[Number(data.name) - 1]?.label;
 
     const semesterData = {
-      ...data,
       name,
       code: data?.name,
+      year: data?.year,
     };
     console.log({ semesterData });
   };
