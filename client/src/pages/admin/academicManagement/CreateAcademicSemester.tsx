@@ -18,11 +18,20 @@ const nameOptions = [
   },
 ];
 
+const currentYear = new Date().getFullYear();
+const yearOptions = Array.from({ length: 8 }, (_, i) => ({
+  value: String(currentYear + i),
+  label: String(currentYear + i),
+}));
+
+console.log({ yearOptions });
+
 const CreateAcademicSemester = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const name = nameOptions[Number(data.name) - 1].label;
 
     const semesterData = {
+      ...data,
       name,
       code: data?.name,
     };
@@ -43,7 +52,7 @@ const CreateAcademicSemester = () => {
             label="Year"
             name="year"
             placeholder="Select Year"
-            options={nameOptions}
+            options={yearOptions}
           />
           <PHSelect
             label="Start Month"
