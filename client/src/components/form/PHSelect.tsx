@@ -25,6 +25,7 @@ const PHSelect = ({
             placeholder={placeholder}
             allowClear
             options={options}
+            size="large"
           />
         </Form.Item>
       )}
