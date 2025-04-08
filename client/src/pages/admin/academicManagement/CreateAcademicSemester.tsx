@@ -13,7 +13,7 @@ const CreateAcademicSemester = () => {
       <PHForm onSubmit={onSubmit}>
         <PHInput type="text" name="name" label="Name" />
         <Button htmlType="submit" type="primary">
-          Login
+          Submit
         </Button>
       </PHForm>
     </div>
