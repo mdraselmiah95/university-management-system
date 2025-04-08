@@ -1,14 +1,10 @@
 import { Form, Select } from "antd";
 
 const PHSelect = ({ label = "name" }) => {
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
   return (
     <Form.Item label={label}>
       <Select
         style={{ width: "100%" }}
-        onChange={handleChange}
         placeholder="select it"
         allowClear
         options={[

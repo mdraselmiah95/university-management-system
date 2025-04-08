@@ -13,7 +13,7 @@ const CreateAcademicSemester = () => {
     <Flex align="center" justify="center">
       <Col span={8}>
         <PHForm onSubmit={onSubmit}>
-          <PHSelect />
+          <PHSelect label="Name" />
           <PHInput type="text" name="name" label="Name" />
           <Button htmlType="submit" type="primary">
             Submit
