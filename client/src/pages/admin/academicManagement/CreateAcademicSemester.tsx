@@ -39,6 +39,24 @@ const CreateAcademicSemester = () => {
             placeholder="Select Name"
             options={nameOptions}
           />
+          <PHSelect
+            label="Year"
+            name="year"
+            placeholder="Select Year"
+            options={nameOptions}
+          />
+          <PHSelect
+            label="Start Month"
+            name="startMonth"
+            placeholder="Select Start Month"
+            options={nameOptions}
+          />
+          <PHSelect
+            label="End Month"
+            name="endMonth"
+            placeholder="Select End Month"
+            options={nameOptions}
+          />
           <Button htmlType="submit" type="primary">
             Submit
           </Button>
