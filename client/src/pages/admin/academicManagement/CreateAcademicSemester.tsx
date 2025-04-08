@@ -3,25 +3,31 @@ import PHForm from "../../../components/form/PHForm";
 import { Button, Col, Flex } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
 
+const nameOptions = [
+  {
+    value: "01",
+    label: "Autumn",
+  },
+  {
+    value: "02",
+    label: "Summer",
+  },
+  {
+    value: "03",
+    label: "Fall",
+  },
+];
+
 const CreateAcademicSemester = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-  };
+    const name = nameOptions[Number(data.name) - 1].label;
 
-  const nameOptions = [
-    {
-      value: "Autumn",
-      label: "Autumn",
-    },
-    {
-      value: "Summer",
-      label: "Summer",
-    },
-    {
-      value: "Fall",
-      label: "Fall",
-    },
-  ];
+    const semesterData = {
+      name,
+      code: data?.name,
+    };
+    console.log({ semesterData });
+  };
 
   return (
     <Flex align="center" justify="center">
