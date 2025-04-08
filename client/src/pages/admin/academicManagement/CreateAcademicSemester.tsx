@@ -8,11 +8,31 @@ const CreateAcademicSemester = () => {
     console.log(data);
   };
 
+  const nameOptions = [
+    {
+      value: "Autumn",
+      label: "Autumn",
+    },
+    {
+      value: "Summer",
+      label: "Summer",
+    },
+    {
+      value: "Fall",
+      label: "Fall",
+    },
+  ];
+
   return (
     <Flex align="center" justify="center">
       <Col span={8}>
         <PHForm onSubmit={onSubmit}>
-          <PHSelect label="Name" name="name" />
+          <PHSelect
+            label="Name"
+            name="name"
+            placeholder="Select Name"
+            options={nameOptions}
+          />
           <Button htmlType="submit" type="primary">
             Submit
           </Button>
