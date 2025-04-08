@@ -1,12 +1,16 @@
-import { Select, Space } from "antd";
+import { Form, Select } from "antd";
 
-const PHSelect = () => {
+const PHSelect = ({ label = "name" }) => {
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
   return (
-    <Space wrap>
+    <Form.Item label={label}>
       <Select
-        defaultValue="lucy"
-        style={{ width: 120 }}
+        style={{ width: "100%" }}
         onChange={handleChange}
+        placeholder="select it"
+        allowClear
         options={[
           { value: "jack", label: "Jack" },
           { value: "lucy", label: "Lucy" },
@@ -14,26 +18,7 @@ const PHSelect = () => {
           { value: "disabled", label: "Disabled", disabled: true },
         ]}
       />
-      <Select
-        defaultValue="lucy"
-        style={{ width: 120 }}
-        disabled
-        options={[{ value: "lucy", label: "Lucy" }]}
-      />
-      <Select
-        defaultValue="lucy"
-        style={{ width: 120 }}
-        loading
-        options={[{ value: "lucy", label: "Lucy" }]}
-      />
-      <Select
-        defaultValue="lucy"
-        style={{ width: 120 }}
-        allowClear
-        options={[{ value: "lucy", label: "Lucy" }]}
-        placeholder="select it"
-      />
-    </Space>
+    </Form.Item>
   );
 };
 
