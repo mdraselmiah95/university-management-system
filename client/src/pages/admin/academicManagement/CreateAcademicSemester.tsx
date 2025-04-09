@@ -4,6 +4,7 @@ import { Button, Card } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
 import { semesterOptions, yearOptions } from "../../../constants/semester";
 import { monthsOptions } from "../../../constants/globals";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const CreateAcademicSemester = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -30,7 +31,7 @@ const CreateAcademicSemester = () => {
           padding: "12px",
         }}
       >
-        <PHForm onSubmit={onSubmit}>
+        <PHForm onSubmit={onSubmit} resolver={zodResolver}>
           <PHSelect
             label="Name"
             name="name"
