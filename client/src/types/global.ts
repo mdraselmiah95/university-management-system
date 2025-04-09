@@ -6,3 +6,8 @@ export type TError = {
   };
   status: number;
 };
+
+export type TResponse = {
+  data?: any;
+  error?: TError;
+};
