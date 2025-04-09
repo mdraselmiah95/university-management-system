@@ -30,6 +30,7 @@ const PHSelect = ({
             allowClear
             options={options}
             size="large"
+            status={error ? "error" : ""}
           />
         </Form.Item>
       )}
