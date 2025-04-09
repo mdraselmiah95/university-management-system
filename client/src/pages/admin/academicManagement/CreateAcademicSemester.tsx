@@ -1,6 +1,6 @@
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../../components/form/PHForm";
-import { Button, Col, Flex } from "antd";
+import { Button, Card, Col, Flex } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
 
 const nameOptions = [
@@ -39,8 +39,16 @@ const CreateAcademicSemester = () => {
   };
 
   return (
-    <Flex align="center" justify="center">
-      <Col span={8}>
+    <>
+      <Card
+        title="Create Academic Semester"
+        style={{
+          width: "400px",
+          margin: "auto",
+          marginTop: "5%",
+          padding: "12px",
+        }}
+      >
         <PHForm onSubmit={onSubmit}>
           <PHSelect
             label="Name"
@@ -70,8 +78,8 @@ const CreateAcademicSemester = () => {
             Submit
           </Button>
         </PHForm>
-      </Col>
-    </Flex>
+      </Card>
+    </>
   );
 };
 
