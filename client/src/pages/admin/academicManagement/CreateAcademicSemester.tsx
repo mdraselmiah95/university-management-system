@@ -36,7 +36,7 @@ const CreateAcademicSemester = () => {
           width: "400px",
           margin: "auto",
           marginTop: "5%",
-          padding: "12px",
+          padding: "12px 18px",
         }}
       >
         <PHForm
