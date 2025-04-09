@@ -5,6 +5,7 @@ import PHSelect from "../../../components/form/PHSelect";
 import { semesterOptions, yearOptions } from "../../../constants/semester";
 import { monthsOptions } from "../../../constants/globals";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 const CreateAcademicSemester = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -20,6 +21,10 @@ const CreateAcademicSemester = () => {
     console.log({ semesterData });
   };
 
+  const academicSemesterSchema = z.object({
+    name: z.string({ required_error: "Name is required" }),
+  });
+
   return (
     <>
       <Card
@@ -31,7 +36,10 @@ const CreateAcademicSemester = () => {
           padding: "12px",
         }}
       >
-        <PHForm onSubmit={onSubmit} resolver={zodResolver}>
+        <PHForm
+          onSubmit={onSubmit}
+          resolver={zodResolver(academicSemesterSchema)}
+        >
           <PHSelect
             label="Name"
             name="name"
