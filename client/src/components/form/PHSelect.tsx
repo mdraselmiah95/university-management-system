@@ -17,8 +17,12 @@ const PHSelect = ({
   return (
     <Controller
       name={name}
-      render={({ field }) => (
-        <Form.Item label={label}>
+      render={({ field, fieldState: { error } }) => (
+        <Form.Item
+          label={label}
+          help={error?.message}
+          validateStatus={error ? "error" : ""}
+        >
           <Select
             style={{ width: "100%" }}
             {...field}
