@@ -1,39 +1,20 @@
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../../components/form/PHForm";
-import { Button, Card, Col, Flex } from "antd";
+import { Button, Card } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
-
-const nameOptions = [
-  {
-    value: "01",
-    label: "Autumn",
-  },
-  {
-    value: "02",
-    label: "Summer",
-  },
-  {
-    value: "03",
-    label: "Fall",
-  },
-];
-
-const currentYear = new Date().getFullYear();
-const yearOptions = Array.from({ length: 8 }, (_, i) => ({
-  value: String(currentYear + i),
-  label: String(currentYear + i),
-}));
-
-console.log({ yearOptions });
+import { semesterOptions, yearOptions } from "../../../constants/semester";
+import { monthsOptions } from "../../../constants/globals";
 
 const CreateAcademicSemester = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    const name = nameOptions[Number(data.name) - 1]?.label;
+    const name = semesterOptions[Number(data.name) - 1]?.label;
 
     const semesterData = {
       name,
       code: data?.name,
       year: data?.year,
+      startMonth: data?.startMonth,
+      endMonth: data?.endMonth,
     };
     console.log({ semesterData });
   };
@@ -54,7 +35,7 @@ const CreateAcademicSemester = () => {
             label="Name"
             name="name"
             placeholder="Select Name"
-            options={nameOptions}
+            options={semesterOptions}
           />
           <PHSelect
             label="Year"
@@ -66,13 +47,13 @@ const CreateAcademicSemester = () => {
             label="Start Month"
             name="startMonth"
             placeholder="Select Start Month"
-            options={nameOptions}
+            options={monthsOptions}
           />
           <PHSelect
             label="End Month"
             name="endMonth"
             placeholder="Select End Month"
-            options={nameOptions}
+            options={monthsOptions}
           />
           <Button htmlType="submit" type="primary">
             Submit
