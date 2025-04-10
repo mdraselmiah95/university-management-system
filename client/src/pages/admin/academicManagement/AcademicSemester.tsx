@@ -1,10 +1,6 @@
 import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
 import { Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
-import { useState } from "react";
-
-type TableRowSelection<T extends object = object> =
-  TableProps<T>["rowSelection"];
 
 interface DataType {
   key: React.Key;
