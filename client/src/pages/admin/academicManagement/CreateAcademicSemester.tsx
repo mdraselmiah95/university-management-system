@@ -43,7 +43,8 @@ const CreateAcademicSemester = () => {
       <Card
         title="Create Academic Semester"
         style={{
-          width: "400px",
+          width: "auto",
+          maxWidth: "400px",
           margin: "auto",
           marginTop: "5%",
           padding: "12px 18px",
