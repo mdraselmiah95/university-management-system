@@ -27,6 +27,7 @@ const AcademicSemester = () => {
     {
       title: "Name",
       dataIndex: "name",
+      key: "name",
       showSorterTooltip: { target: "full-header" },
       filters: [
         {
@@ -46,14 +47,31 @@ const AcademicSemester = () => {
     {
       title: "Year",
       dataIndex: "year",
+      key: "year",
+      filters: [
+        {
+          text: "2025",
+          value: "2025",
+        },
+        {
+          text: "2026",
+          value: "2026",
+        },
+        {
+          text: "2027",
+          value: "2027",
+        },
+      ],
     },
     {
       title: "Start Month",
       dataIndex: "startMonth",
+      key: "startMonth",
     },
     {
       title: "End Month",
       dataIndex: "endMonth",
+      key: "endMonth",
     },
   ];
 
@@ -70,6 +88,9 @@ const AcademicSemester = () => {
 
       filters?.name?.forEach((item) =>
         queryParams.push({ name: "name", value: item })
+      );
+      filters?.year?.forEach((item) =>
+        queryParams.push({ name: "year", value: item })
       );
       setParams(queryParams);
     }
