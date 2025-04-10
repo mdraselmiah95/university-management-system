@@ -4,9 +4,9 @@ import { baseApi } from "../../api/baseApi";
 const academicManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllSemesters: builder.query({
-      query: () => {
+      query: (args) => {
         const params = new URLSearchParams();
-        params.append("name", "Fall");
+        params.append(args[0].name, args[0].value);
         return {
           url: "/academic-semesters",
           method: "GET",
