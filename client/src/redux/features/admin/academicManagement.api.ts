@@ -1,4 +1,4 @@
-import { TResponseRedux } from "../../../types/global";
+import { TResponseRedux } from "../../../types";
 import { baseApi } from "../../api/baseApi";
 
 const academicManagementApi = baseApi.injectEndpoints({
