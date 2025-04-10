@@ -11,9 +11,7 @@ export type TTableData = Pick<
 
 const AcademicSemester = () => {
   const [params, setParams] = useState([]);
-  const { data: semesterData } = useGetAllSemestersQuery([
-    { name: "name", value: "Fall" },
-  ]);
+  const { data: semesterData } = useGetAllSemestersQuery(params);
 
   const tableData = semesterData?.data?.map(
     ({ _id, name, year, startMonth, endMonth }) => ({
@@ -73,8 +71,7 @@ const AcademicSemester = () => {
       filters?.name?.forEach((item) =>
         queryParams.push({ name: "name", value: item })
       );
-
-      console.log(queryParams);
+      setParams(queryParams);
     }
   };
 
