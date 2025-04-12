@@ -1,3 +1,10 @@
+import { Button, Card } from "antd";
+import PHSelect from "../../../components/form/PHSelect";
+import PHForm from "../../../components/form/PHForm";
+import { semesterOptions } from "../../../constants/semester";
+import PHInput from "../../../components/form/PHInput";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+
 const studentData = {
   password: "student123",
   student: {
@@ -34,7 +41,41 @@ const studentData = {
 };
 
 const CreateStudent = () => {
-  return <div>CreateStudent</div>;
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    console.log({ data });
+  };
+  return (
+    <>
+      <Card
+        title="Create Student"
+        style={{
+          width: "auto",
+          maxWidth: "400px",
+          margin: "auto",
+          marginTop: "5%",
+          padding: "12px 18px",
+        }}
+      >
+        <PHForm
+          onSubmit={onSubmit}
+          // resolver={zodResolver(academicSemesterSchema)}
+        >
+          <PHInput name="name" type="text" label="Student Name" />
+
+          <PHSelect
+            label="Name"
+            name="sname"
+            placeholder="Select Name"
+            options={semesterOptions}
+          />
+
+          <Button htmlType="submit" type="primary">
+            Submit
+          </Button>
+        </PHForm>
+      </Card>
+    </>
+  );
 };
 
 export default CreateStudent;
