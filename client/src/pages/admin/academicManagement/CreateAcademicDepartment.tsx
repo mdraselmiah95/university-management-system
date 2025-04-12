@@ -11,6 +11,7 @@ import PHInput from "../../../components/form/PHInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { academicDepartmentSchema } from "../../../sehemas/academicManagement.schema";
 import { toast } from "sonner";
+import { TResponse } from "../../../types";
 
 const CreateAcademicDepartment = () => {
   const navigate = useNavigate();
@@ -24,11 +25,15 @@ const CreateAcademicDepartment = () => {
     };
   });
 
-  console.log({ facultyOption });
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      const res = await addAcademicDepartment(data);
-      console.log({ res });
+      const res = (await addAcademicDepartment(data)) as TResponse;
+      if (res?.error) {
+        toast.error(res?.error?.data?.message);
+      } else {
+        toast.success(res?.data?.message);
+        navigate("/admin/academic-department");
+      }
     } catch (error) {
       toast.error("Something went wrong");
     }
