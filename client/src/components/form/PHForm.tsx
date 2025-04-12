@@ -1,6 +1,11 @@
 import { Form } from "antd";
 import { ReactNode } from "react";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 
 type TFormConfig = {
   defaultValues?: Record<string, any>;
@@ -28,7 +33,7 @@ const PHForm = ({
 
   const methods = useForm(formConfig);
 
-  const submit = (data) => {
+  const submit: SubmitHandler<FieldValues> = (data) => {
     onSubmit(data);
     methods.reset();
   };
