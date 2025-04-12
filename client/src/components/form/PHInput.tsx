@@ -29,6 +29,7 @@ const PHInput = ({ type, name, label }: TInputProps) => {
               id={name}
               placeholder={name}
               size="large"
+              allowClear
             />
           </Form.Item>
         )}
