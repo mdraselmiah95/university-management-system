@@ -42,8 +42,13 @@ const studentData = {
 
 const CreateStudent = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log({ data });
+    const formData = new FormData();
+    formData.append("password", "studentDatPP");
+    console.log(Object.fromEntries(formData));
   };
+
+  // Object.fromEntries(formData) this is used to convert FormData to a regular object
+
   return (
     <>
       <Card
