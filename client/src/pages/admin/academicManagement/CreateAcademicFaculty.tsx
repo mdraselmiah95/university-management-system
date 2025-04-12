@@ -6,8 +6,10 @@ import { academicFacultySchema } from "../../../sehemas/academicManagement.schem
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddAcademicFacultyMutation } from "../../../redux/features/admin/academicManagement.api";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const CreateAcademicFaculty = () => {
+  const navigate = useNavigate();
   const [addAcademicFaculty] = useAddAcademicFacultyMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -19,6 +21,7 @@ const CreateAcademicFaculty = () => {
         toast.error(res?.error?.data?.message, { id: toastId });
       } else {
         toast.success(res?.data?.message, { id: toastId });
+        navigate("/admin/academic-faculty");
       }
     } catch (error) {
       toast.error("Something went wrong");

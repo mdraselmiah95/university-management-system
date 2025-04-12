@@ -9,8 +9,10 @@ import { academicSemesterSchema } from "../../../sehemas/academicManagement.sche
 import { useAddAcademicSemesterMutation } from "../../../redux/features/admin/academicManagement.api";
 import { toast } from "sonner";
 import { TResponse } from "../../../types/global";
+import { useNavigate } from "react-router-dom";
 
 const CreateAcademicSemester = () => {
+  const navigate = useNavigate();
   const [addAcademicSemester] = useAddAcademicSemesterMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -32,6 +34,7 @@ const CreateAcademicSemester = () => {
         toast.error(res?.error?.data?.message, { id: toastId });
       } else {
         toast.success(res?.data?.message, { id: toastId });
+        navigate("/admin/academic-semester");
       }
     } catch (error) {
       toast.error("Something went wrong");
