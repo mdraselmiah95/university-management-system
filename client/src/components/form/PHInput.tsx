@@ -16,11 +16,16 @@ const PHInput = ({ type, name, label }: TInputProps) => {
     >
       <Controller
         name={name}
-        render={({ field }) => (
-          <Form.Item label={label}>
+        render={({ field, fieldState: { error } }) => (
+          <Form.Item
+            label={label}
+            validateStatus={error ? "error" : ""}
+            help={error?.message}
+          >
             <Input
               {...field}
               type={type}
+              status={error ? "error" : ""}
               id={name}
               placeholder={name}
               size="large"
