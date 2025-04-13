@@ -63,6 +63,7 @@ const CreateStudent = () => {
             style={{
               display: "flex",
               alignItems: "center",
+              marginTop: "12px",
             }}
           >
             <FcPortraitMode
@@ -77,7 +78,6 @@ const CreateStudent = () => {
         style={{
           width: "100%",
           margin: "auto",
-          marginTop: "5%",
           padding: "12px 18px",
         }}
       >
