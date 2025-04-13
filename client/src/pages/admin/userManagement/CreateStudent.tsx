@@ -4,7 +4,7 @@ import PHForm from "../../../components/form/PHForm";
 import { semesterOptions } from "../../../constants/semester";
 import PHInput from "../../../components/form/PHInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import { FcPortraitMode } from "react-icons/fc";
+import { FcPortraitMode, FcBusinessman } from "react-icons/fc";
 import { FaPersonChalkboard } from "react-icons/fa6";
 import { RiContactsFill } from "react-icons/ri";
 
@@ -83,6 +83,7 @@ const CreateStudent = () => {
           onSubmit={onSubmit}
           // resolver={zodResolver(academicSemesterSchema)}
         >
+          {/* personal info */}
           <Divider>
             <div
               style={{
@@ -146,6 +147,8 @@ const CreateStudent = () => {
               />
             </Col>
           </Row>
+
+          {/* contact info */}
           <Divider>
             <div
               style={{
@@ -158,7 +161,6 @@ const CreateStudent = () => {
               <span>Contact Info</span>
             </div>
           </Divider>
-
           <Row gutter={8}>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput
@@ -203,6 +205,70 @@ const CreateStudent = () => {
             </Col>
           </Row>
 
+          {/* Guardian info */}
+          <Divider>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <FcBusinessman />
+              <span>Guardian Info</span>
+            </div>
+          </Divider>
+          <Row gutter={8}>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="fatherName"
+                placeholder="Your father name"
+                type="text"
+                label="Father Name"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="fatherOccupation"
+                placeholder="Your father occupation"
+                type="text"
+                label="Father Occupation"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="fatherContactNo"
+                placeholder="Your father content number"
+                type="text"
+                label="Father Contact Number"
+              />
+            </Col>
+
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="motherName"
+                placeholder="Your mother name"
+                type="text"
+                label="Mother Name"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="motherOccupation"
+                placeholder="Your mother occupation"
+                type="text"
+                label="Mother Occupation"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="motherContactNo"
+                placeholder="Your mother contact number"
+                type="text"
+                label="Mother Contact Number"
+              />
+            </Col>
+          </Row>
           <Button htmlType="submit" type="primary">
             Submit
           </Button>
