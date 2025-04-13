@@ -1,7 +1,7 @@
 import { Button, Card, Col, Divider, Row } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
 import PHForm from "../../../components/form/PHForm";
-import { genderOptions } from "../../../constants/semester";
+import { bloodGroupOptions, genderOptions } from "../../../constants/semester";
 import PHInput from "../../../components/form/PHInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { FcPortraitMode, FcBusinessman } from "react-icons/fc";
@@ -139,11 +139,11 @@ const CreateStudent = () => {
               />
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <PHInput
+              <PHSelect
+                label="Blood Group"
                 name="bloogGroup"
                 placeholder="Your blood group"
-                type="text"
-                label="Blood Group"
+                options={bloodGroupOptions}
               />
             </Col>
           </Row>
