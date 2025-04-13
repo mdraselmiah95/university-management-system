@@ -118,11 +118,30 @@ const CreateStudent = () => {
                 type="text"
                 label="Last Name"
               />
-              <PHSelect
-                label="Name"
-                name="sname"
-                placeholder="Select Name"
-                options={semesterOptions}
+            </Col>
+
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="gender"
+                placeholder="Your gender"
+                type="text"
+                label="Gender"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="dateOfBirth"
+                placeholder="Your date of birth"
+                type="text"
+                label="Date Of Birth"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="bloogGroup"
+                placeholder="Your blood group"
+                type="text"
+                label="Blood Group"
               />
             </Col>
           </Row>
@@ -136,4 +155,10 @@ const CreateStudent = () => {
   );
 };
 
+//  <PHSelect
+//    label="Name"
+//    name="sname"
+//    placeholder="Select Name"
+//    options={semesterOptions}
+//  />;
 export default CreateStudent;
