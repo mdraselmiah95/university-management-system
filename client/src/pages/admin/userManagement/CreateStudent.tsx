@@ -6,6 +6,7 @@ import PHInput from "../../../components/form/PHInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { FcPortraitMode } from "react-icons/fc";
 import { FaPersonChalkboard } from "react-icons/fa6";
+import { RiContactsFill } from "react-icons/ri";
 
 const studentData = {
   password: "student123",
@@ -142,6 +143,62 @@ const CreateStudent = () => {
                 placeholder="Your blood group"
                 type="text"
                 label="Blood Group"
+              />
+            </Col>
+          </Row>
+          <Divider>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <RiContactsFill />
+              <span>Contact Info</span>
+            </div>
+          </Divider>
+
+          <Row gutter={8}>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="email"
+                placeholder="Your valid email"
+                type="text"
+                label="Email"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="contactNo"
+                placeholder="Your contact number"
+                type="text"
+                label="Contact Number"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="emergencyContactNo"
+                placeholder="Your valid emergency content"
+                type="text"
+                label="Emergency Contact Number"
+              />
+            </Col>
+
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="presentAddress"
+                placeholder="Your present address"
+                type="text"
+                label="Present Address"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="permanentAddress"
+                placeholder="Your permanent address"
+                type="text"
+                label="Permanent Address"
               />
             </Col>
           </Row>
