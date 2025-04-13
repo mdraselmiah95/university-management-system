@@ -8,6 +8,7 @@ import { FcPortraitMode, FcBusinessman } from "react-icons/fc";
 import { FaPersonChalkboard } from "react-icons/fa6";
 import { RiContactsFill } from "react-icons/ri";
 import { MdLocalLibrary } from "react-icons/md";
+import PHDatePicker from "../../../components/form/PHDataPicker";
 
 const studentData = {
   password: "student123",
@@ -131,10 +132,9 @@ const CreateStudent = () => {
               />
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <PHInput
+              <PHDatePicker
                 name="dateOfBirth"
                 placeholder="Your date of birth"
-                type="text"
                 label="Date Of Birth"
               />
             </Col>

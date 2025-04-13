@@ -33,6 +33,9 @@ const PHDatePicker = ({
               placeholder={placeholder}
               size="large"
               allowClear
+              style={{
+                width: "100%",
+              }}
             />
           </Form.Item>
         )}
