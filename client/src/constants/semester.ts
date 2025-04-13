@@ -19,16 +19,12 @@ export const yearOptions = Array.from({ length: 8 }, (_, i) => ({
   label: String(currentYear + i),
 }));
 
-export const genderOptions = [
-  {
-    value: "Male",
-    label: "Male",
-  },
-  {
-    value: "Female",
-    label: "Female",
-  },
-];
+export const genders = ["Male", "Female"];
+
+export const genderOptions = genders.map((item) => ({
+  value: item.toLowerCase(),
+  label: item,
+}));
 
 export const bloodGroupOptions = [
   { value: "A+", label: "A+" },
