@@ -18,3 +18,14 @@ export const yearOptions = Array.from({ length: 8 }, (_, i) => ({
   value: String(currentYear + i),
   label: String(currentYear + i),
 }));
+
+export const genderOptions = [
+  {
+    value: "Male",
+    label: "Male",
+  },
+  {
+    value: "Female",
+    label: "Female",
+  },
+];

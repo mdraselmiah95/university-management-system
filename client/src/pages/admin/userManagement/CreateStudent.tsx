@@ -1,12 +1,13 @@
 import { Button, Card, Col, Divider, Row } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
 import PHForm from "../../../components/form/PHForm";
-import { semesterOptions } from "../../../constants/semester";
+import { genderOptions } from "../../../constants/semester";
 import PHInput from "../../../components/form/PHInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { FcPortraitMode, FcBusinessman } from "react-icons/fc";
 import { FaPersonChalkboard } from "react-icons/fa6";
 import { RiContactsFill } from "react-icons/ri";
+import { MdLocalLibrary } from "react-icons/md";
 
 const studentData = {
   password: "student123",
@@ -121,13 +122,12 @@ const CreateStudent = () => {
                 label="Last Name"
               />
             </Col>
-
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <PHInput
+              <PHSelect
+                label="Gender"
                 name="gender"
                 placeholder="Your gender"
-                type="text"
-                label="Gender"
+                options={genderOptions}
               />
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
@@ -147,7 +147,6 @@ const CreateStudent = () => {
               />
             </Col>
           </Row>
-
           {/* contact info */}
           <Divider>
             <div
@@ -204,7 +203,6 @@ const CreateStudent = () => {
               />
             </Col>
           </Row>
-
           {/* Guardian info */}
           <Divider>
             <div
@@ -269,6 +267,55 @@ const CreateStudent = () => {
               />
             </Col>
           </Row>
+          {/* local Guardian */}
+
+          <Divider>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <MdLocalLibrary />
+              <span>Local Guardian</span>
+            </div>
+          </Divider>
+          <Row gutter={8}>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="localGuardian.name"
+                placeholder="Name"
+                type="text"
+                label="Name"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="localGuardian.occupation"
+                placeholder="occupation"
+                type="text"
+                label="Occupation"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="localGuardian.contactNo"
+                placeholder="content number"
+                type="text"
+                label="Contact Number"
+              />
+            </Col>
+
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="localGuardian.address"
+                placeholder="address"
+                type="text"
+                label="Address"
+              />
+            </Col>
+          </Row>
           <Button htmlType="submit" type="primary">
             Submit
           </Button>
@@ -278,10 +325,4 @@ const CreateStudent = () => {
   );
 };
 
-//  <PHSelect
-//    label="Name"
-//    name="sname"
-//    placeholder="Select Name"
-//    options={semesterOptions}
-//  />;
 export default CreateStudent;
