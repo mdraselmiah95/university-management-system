@@ -1,10 +1,11 @@
-import { Button, Card, Col, Row } from "antd";
+import { Button, Card, Col, Divider, Row } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
 import PHForm from "../../../components/form/PHForm";
 import { semesterOptions } from "../../../constants/semester";
 import PHInput from "../../../components/form/PHInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { FcPortraitMode } from "react-icons/fc";
+import { FaPersonChalkboard } from "react-icons/fa6";
 
 const studentData = {
   password: "student123",
@@ -81,6 +82,18 @@ const CreateStudent = () => {
           onSubmit={onSubmit}
           // resolver={zodResolver(academicSemesterSchema)}
         >
+          <Divider>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <FaPersonChalkboard />
+              <span>Personal Info</span>
+            </div>
+          </Divider>
           <Row gutter={8}>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput
