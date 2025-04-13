@@ -5,9 +5,10 @@ type TInputProps = {
   type: string;
   name: string;
   label?: string;
+  placeholder?: string;
 };
 
-const PHInput = ({ type, name, label }: TInputProps) => {
+const PHInput = ({ type, name, label, placeholder = "Name" }: TInputProps) => {
   return (
     <div
       style={{
@@ -27,7 +28,7 @@ const PHInput = ({ type, name, label }: TInputProps) => {
               type={type}
               status={error ? "error" : ""}
               id={name}
-              placeholder={name}
+              placeholder={placeholder}
               size="large"
               allowClear
             />

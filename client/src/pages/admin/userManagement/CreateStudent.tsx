@@ -42,6 +42,7 @@ const studentData = {
 
 const CreateStudent = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    console.log({ data });
     const formData = new FormData();
     formData.append("password", "studentDatPP");
     console.log(Object.fromEntries(formData));
@@ -66,13 +67,28 @@ const CreateStudent = () => {
         >
           <Row gutter={8}>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <PHInput name="name" type="text" label="Student Name" />
+              <PHInput
+                name="name.firstName"
+                placeholder="Your first name"
+                type="text"
+                label="First Name"
+              />
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <PHInput name="name" type="text" label="Student Name" />
+              <PHInput
+                name="name.middleName"
+                placeholder="Your middle name"
+                type="text"
+                label="Middle Name"
+              />
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-              <PHInput name="name" type="text" label="Student Name" />
+              <PHInput
+                name="name.lastName"
+                placeholder="Your last name"
+                type="text"
+                label="Last Name"
+              />
               <PHSelect
                 label="Name"
                 name="sname"
