@@ -4,6 +4,7 @@ import PHForm from "../../../components/form/PHForm";
 import { semesterOptions } from "../../../constants/semester";
 import PHInput from "../../../components/form/PHInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { FcPortraitMode } from "react-icons/fc";
 
 const studentData = {
   password: "student123",
@@ -53,7 +54,22 @@ const CreateStudent = () => {
   return (
     <>
       <Card
-        title="Create Student"
+        title={
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <FcPortraitMode
+              style={{
+                fontSize: "18px",
+                marginRight: "8px",
+              }}
+            />
+            <span>Add Student Info</span>
+          </div>
+        }
         style={{
           width: "100%",
           margin: "auto",
