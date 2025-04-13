@@ -1,4 +1,4 @@
-import { Button, Card } from "antd";
+import { Button, Card, Col, Row } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
 import PHForm from "../../../components/form/PHForm";
 import { semesterOptions } from "../../../constants/semester";
@@ -54,8 +54,7 @@ const CreateStudent = () => {
       <Card
         title="Create Student"
         style={{
-          width: "auto",
-          maxWidth: "400px",
+          width: "100%",
           margin: "auto",
           marginTop: "5%",
           padding: "12px 18px",
@@ -65,14 +64,23 @@ const CreateStudent = () => {
           onSubmit={onSubmit}
           // resolver={zodResolver(academicSemesterSchema)}
         >
-          <PHInput name="name" type="text" label="Student Name" />
-
-          <PHSelect
-            label="Name"
-            name="sname"
-            placeholder="Select Name"
-            options={semesterOptions}
-          />
+          <Row gutter={8}>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput name="name" type="text" label="Student Name" />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput name="name" type="text" label="Student Name" />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput name="name" type="text" label="Student Name" />
+              <PHSelect
+                label="Name"
+                name="sname"
+                placeholder="Select Name"
+                options={semesterOptions}
+              />
+            </Col>
+          </Row>
 
           <Button htmlType="submit" type="primary">
             Submit
