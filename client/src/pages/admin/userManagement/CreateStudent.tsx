@@ -1,9 +1,9 @@
-import { Button, Card, Col, Divider, Row } from "antd";
+import { Button, Card, Col, Divider, Form, Input, Row } from "antd";
 import PHSelect from "../../../components/form/PHSelect";
 import PHForm from "../../../components/form/PHForm";
 import { bloodGroupOptions, genderOptions } from "../../../constants/semester";
 import PHInput from "../../../components/form/PHInput";
-import { FieldValues, SubmitHandler } from "react-hook-form";
+import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import { FcPortraitMode, FcBusinessman, FcGraduationCap } from "react-icons/fc";
 import { FaPersonChalkboard } from "react-icons/fa6";
 import { RiContactsFill } from "react-icons/ri";
@@ -106,7 +106,7 @@ const CreateStudent = () => {
     const formData = new FormData();
     formData.append("data", JSON.stringify(studentData));
     addStudent(formData);
-    console.log(Object.fromEntries(formData));
+    // console.log(Object.fromEntries(formData));
   };
 
   // Object.fromEntries(formData) this is used to convert FormData to a regular object
@@ -201,6 +201,17 @@ const CreateStudent = () => {
                 name="bloogGroup"
                 placeholder="Your blood group"
                 options={bloodGroupOptions}
+              />
+            </Col>
+
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <Controller
+                name="image"
+                render={() => (
+                  <Form.Item label="Picture">
+                    <Input type="file" />
+                  </Form.Item>
+                )}
               />
             </Col>
           </Row>
