@@ -4,7 +4,7 @@ import PHForm from "../../../components/form/PHForm";
 import { bloodGroupOptions, genderOptions } from "../../../constants/semester";
 import PHInput from "../../../components/form/PHInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import { FcPortraitMode, FcBusinessman } from "react-icons/fc";
+import { FcPortraitMode, FcBusinessman, FcGraduationCap } from "react-icons/fc";
 import { FaPersonChalkboard } from "react-icons/fa6";
 import { RiContactsFill } from "react-icons/ri";
 import { MdLocalLibrary } from "react-icons/md";
@@ -300,7 +300,6 @@ const CreateStudent = () => {
             </Col>
           </Row>
           {/* local Guardian */}
-
           <Divider>
             <div
               style={{
@@ -345,6 +344,38 @@ const CreateStudent = () => {
                 placeholder="address"
                 type="text"
                 label="Address"
+              />
+            </Col>
+          </Row>
+
+          {/* Academic info */}
+          <Divider>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <FcGraduationCap />
+              <span>Academic Info</span>
+            </div>
+          </Divider>
+          <Row gutter={8}>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="name.firstName"
+                placeholder="Your first name"
+                type="text"
+                label="First Name"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="name.middleName"
+                placeholder="Your middle name"
+                type="text"
+                label="Middle Name"
               />
             </Col>
           </Row>
