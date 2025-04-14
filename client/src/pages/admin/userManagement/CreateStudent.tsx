@@ -99,13 +99,14 @@ const CreateStudent = () => {
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    console.log({ data });
     const studentData = {
       password: "student01",
       student: data,
     };
     const formData = new FormData();
     formData.append("data", JSON.stringify(studentData));
-    addStudent(formData);
+    // addStudent(formData);
     // console.log(Object.fromEntries(formData));
   };
 
@@ -207,9 +208,14 @@ const CreateStudent = () => {
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <Controller
                 name="image"
-                render={({ field: { onChange, ...field } }) => (
+                render={({ field: { onChange, value, ...field } }) => (
                   <Form.Item label="Picture">
-                    <Input type="file" {...field} />
+                    <Input
+                      type="file"
+                      value={value?.fileName}
+                      {...field}
+                      onChange={(e) => onChange(e.target.files?.[0])}
+                    />
                   </Form.Item>
                 )}
               />
