@@ -9,7 +9,10 @@ import { FaPersonChalkboard } from "react-icons/fa6";
 import { RiContactsFill } from "react-icons/ri";
 import { MdLocalLibrary } from "react-icons/md";
 import PHDatePicker from "../../../components/form/PHDataPicker";
-import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
+import {
+  useGetAcademicDepartmentsQuery,
+  useGetAllSemestersQuery,
+} from "../../../redux/features/admin/academicManagement.api";
 
 const studentData = {
   password: "student123",
@@ -79,9 +82,17 @@ const CreateStudent = () => {
   const { data: SemesterData, isLoading: sIsLoading } =
     useGetAllSemestersQuery(undefined);
 
+  const { data: departmentData, isLoading: dIsLoading } =
+    useGetAcademicDepartmentsQuery(undefined);
+
   const semesterOptions = SemesterData?.data?.map((item) => ({
     value: item._id,
     label: `${item.name} ${item.year}`,
+  }));
+
+  const departmentOptions = departmentData?.data?.map((item) => ({
+    value: item._id,
+    label: `${item.name}`,
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -379,11 +390,12 @@ const CreateStudent = () => {
               />
             </Col>
             <Col span={24} md={{ span: 12 }}>
-              <PHInput
-                name="name.middleName"
-                placeholder="Your middle name"
-                type="text"
-                label="Middle Name"
+              <PHSelect
+                label="Select Department"
+                name="academicDepartment"
+                placeholder="Select your department"
+                disabled={dIsLoading}
+                options={departmentOptions}
               />
             </Col>
           </Row>
