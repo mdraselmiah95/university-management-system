@@ -45,6 +45,7 @@ const StudentData = () => {
           </Space>
         );
       },
+      width: "1%",
     },
   ];
 
