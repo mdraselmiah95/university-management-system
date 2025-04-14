@@ -5,6 +5,7 @@ type TPHSelectProps = {
   label: string;
   name: string;
   placeholder?: string;
+  disabled?: boolean;
   options: { value: string; label: string; disabled?: boolean }[];
 };
 
@@ -13,6 +14,7 @@ const PHSelect = ({
   name = "name",
   placeholder = "name",
   options,
+  disabled = false,
 }: TPHSelectProps) => {
   return (
     <Controller
@@ -30,6 +32,7 @@ const PHSelect = ({
             allowClear
             options={options}
             size="large"
+            disabled={disabled}
             status={error ? "error" : ""}
           />
         </Form.Item>

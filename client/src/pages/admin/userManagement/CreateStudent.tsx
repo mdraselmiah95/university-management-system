@@ -374,6 +374,7 @@ const CreateStudent = () => {
                 label="Select Semester"
                 name="admissionSemester"
                 placeholder="Select your semester"
+                disabled={sIsLoading}
                 options={semesterOptions}
               />
             </Col>
