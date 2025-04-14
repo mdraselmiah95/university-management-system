@@ -207,9 +207,9 @@ const CreateStudent = () => {
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <Controller
                 name="image"
-                render={() => (
+                render={({ field: { onChange, ...field } }) => (
                   <Form.Item label="Picture">
-                    <Input type="file" />
+                    <Input type="file" {...field} />
                   </Form.Item>
                 )}
               />
