@@ -1,90 +1,48 @@
-import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
-import { Button, Table } from "antd";
+import { Button, Space, Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
-import { TAcademicSemester, TQueryParams } from "../../../types";
+import { TQueryParams, TStudent } from "../../../types";
 import { useState } from "react";
+import { useGetAllStudentsQuery } from "../../../redux/features/admin/userManagement.api";
 
-export type TTableData = Pick<
-  TAcademicSemester,
-  "name" | "year" | "startMonth" | "endMonth"
->;
+export type TTableData = Pick<TStudent, "name" | "id">;
 
 const StudentData = () => {
   const [params, setParams] = useState<TQueryParams[] | undefined>(undefined);
   const {
-    data: semesterData,
+    data: studentData,
     isLoading,
     isFetching,
-  } = useGetAllSemestersQuery(params);
+  } = useGetAllStudentsQuery(params);
 
-  const tableData = semesterData?.data?.map(
-    ({ _id, name, year, startMonth, endMonth }) => ({
-      key: _id,
-      name,
-      year,
-      startMonth,
-      endMonth,
-    })
-  );
+  const tableData = studentData?.data?.map(({ _id, fullName, id }) => ({
+    key: _id,
+    fullName,
+    id,
+  }));
 
   const columns: TableColumnsType<TTableData> = [
     {
       title: "Name",
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "fullName",
+      key: "fullName",
       showSorterTooltip: { target: "full-header" },
-      filters: [
-        {
-          text: "Autumn",
-          value: "Autumn",
-        },
-        {
-          text: "Fall",
-          value: "Fall",
-        },
-        {
-          text: "Summer",
-          value: "Summer",
-        },
-      ],
     },
     {
-      title: "Year",
-      dataIndex: "year",
-      key: "year",
-      filters: [
-        {
-          text: "2025",
-          value: "2025",
-        },
-        {
-          text: "2026",
-          value: "2026",
-        },
-        {
-          text: "2027",
-          value: "2027",
-        },
-      ],
+      title: "Roll No",
+      dataIndex: "id",
+      key: "id",
     },
-    {
-      title: "Start Month",
-      dataIndex: "startMonth",
-      key: "startMonth",
-    },
-    {
-      title: "End Month",
-      dataIndex: "endMonth",
-      key: "endMonth",
-    },
+
     {
       title: "Action",
       key: "action",
       render: () => {
         return (
-          <div>
-            <Button>Action</Button>
-          </div>
+          <Space>
+            <Button>Details</Button>
+            <Button>Update</Button>
+            <Button>Block</Button>
+          </Space>
         );
       },
     },
