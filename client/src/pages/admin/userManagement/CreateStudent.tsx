@@ -219,7 +219,7 @@ const CreateStudent = () => {
           <Row gutter={8}>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput
-                name="fatherName"
+                name="guardian.fatherName"
                 placeholder="Your father name"
                 type="text"
                 label="Father Name"
@@ -227,7 +227,7 @@ const CreateStudent = () => {
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput
-                name="fatherOccupation"
+                name="guardian.fatherOccupation"
                 placeholder="Your father occupation"
                 type="text"
                 label="Father Occupation"
@@ -235,7 +235,7 @@ const CreateStudent = () => {
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput
-                name="fatherContactNo"
+                name="guardian.fatherContactNo"
                 placeholder="Your father content number"
                 type="text"
                 label="Father Contact Number"
@@ -244,7 +244,7 @@ const CreateStudent = () => {
 
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput
-                name="motherName"
+                name="guardian.motherName"
                 placeholder="Your mother name"
                 type="text"
                 label="Mother Name"
@@ -252,7 +252,7 @@ const CreateStudent = () => {
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput
-                name="motherOccupation"
+                name="guardian.motherOccupation"
                 placeholder="Your mother occupation"
                 type="text"
                 label="Mother Occupation"
@@ -260,7 +260,7 @@ const CreateStudent = () => {
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput
-                name="motherContactNo"
+                name="guardian.motherContactNo"
                 placeholder="Your mother contact number"
                 type="text"
                 label="Mother Contact Number"
