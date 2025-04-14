@@ -99,9 +99,12 @@ const CreateStudent = () => {
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log({ data });
+    const studentData = {
+      password: "student01",
+      student: data,
+    };
     const formData = new FormData();
-    formData.append("data", JSON.stringify(data));
+    formData.append("data", JSON.stringify(studentData));
     addStudent(formData);
     console.log(Object.fromEntries(formData));
   };
