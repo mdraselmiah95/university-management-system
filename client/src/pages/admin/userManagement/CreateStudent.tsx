@@ -14,6 +14,9 @@ import {
   useGetAllSemestersQuery,
 } from "../../../redux/features/admin/academicManagement.api";
 import { useAddStudentMutation } from "../../../redux/features/admin/userManagement.api";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { TResponse, TStudent } from "../../../types";
 
 const studentDefaultValues = {
   name: {
@@ -44,8 +47,8 @@ const studentDefaultValues = {
 };
 
 const CreateStudent = () => {
-  const [addStudent, { data, error, isLoading }] = useAddStudentMutation();
-  console.log({ data, error });
+  const [addStudent, { isLoading }] = useAddStudentMutation();
+  const navigate = useNavigate();
 
   const { data: SemesterData, isLoading: sIsLoading } =
     useGetAllSemestersQuery(undefined);
@@ -64,6 +67,7 @@ const CreateStudent = () => {
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("Creating Student...");
     const studentData = {
       password: "student01",
       student: data,
@@ -74,10 +78,19 @@ const CreateStudent = () => {
     addStudent(formData);
 
     try {
-      const result = await addStudent(formData).unwrap();
+      const result = await addStudent(formData);
+
+      if (result?.error) {
+        toast.error(res?.error?.data?.message, { id: toastId });
+      } else {
+        toast.success(res?.data?.message, { id: toastId });
+        navigate("/admin/students-data");
+      }
 
       console.log({ result });
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Something went wrong", { id: toastId });
+    }
     // console.log(Object.fromEntries(formData));
   };
 
