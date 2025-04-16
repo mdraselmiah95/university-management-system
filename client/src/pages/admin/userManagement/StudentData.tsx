@@ -22,11 +22,15 @@ const StudentData = () => {
 
   const metaData = studentData?.meta;
 
-  const tableData = studentData?.data?.map(({ _id, fullName, id }) => ({
-    key: _id,
-    fullName,
-    id,
-  }));
+  const tableData = studentData?.data?.map(
+    ({ _id, fullName, id, email, contactNo }) => ({
+      key: _id,
+      fullName,
+      id,
+      email,
+      contactNo,
+    })
+  );
 
   const columns: TableColumnsType<TTableData> = [
     {
@@ -39,6 +43,17 @@ const StudentData = () => {
       title: "Roll No",
       dataIndex: "id",
       key: "id",
+    },
+
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "Contact Number",
+      dataIndex: "contactNo",
+      key: "contactNo",
     },
 
     {
