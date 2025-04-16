@@ -16,7 +16,7 @@ import {
 import { useAddStudentMutation } from "../../../redux/features/admin/userManagement.api";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import { TResponse, TStudent } from "../../../types";
+import { TResponse } from "../../../types";
 
 const studentDefaultValues = {
   name: {
@@ -78,16 +78,14 @@ const CreateStudent = () => {
     addStudent(formData);
 
     try {
-      const result = await addStudent(formData);
+      const result = (await addStudent(formData)) as TResponse;
 
       if (result?.error) {
-        toast.error(res?.error?.data?.message, { id: toastId });
+        toast.error(result?.error?.data?.message, { id: toastId });
       } else {
-        toast.success(res?.data?.message, { id: toastId });
+        toast.success(result?.data?.message, { id: toastId });
         navigate("/admin/students-data");
       }
-
-      console.log({ result });
     } catch (error) {
       toast.error("Something went wrong", { id: toastId });
     }
