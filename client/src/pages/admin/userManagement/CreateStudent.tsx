@@ -22,7 +22,6 @@ const studentDefaultValues = {
     lastName: "Number 1",
   },
   gender: "male",
-  email: "student02@gmail.com",
   contactNo: "1235678",
   emergencyContactNo: "987-654-3210",
   bloogGroup: "A+",
@@ -45,8 +44,9 @@ const studentDefaultValues = {
 };
 
 const CreateStudent = () => {
-  const [addStudent, { data, error }] = useAddStudentMutation();
+  const [addStudent, { data, error, isLoading }] = useAddStudentMutation();
   console.log({ data, error });
+
   const { data: SemesterData, isLoading: sIsLoading } =
     useGetAllSemestersQuery(undefined);
 
@@ -72,6 +72,12 @@ const CreateStudent = () => {
     formData.append("data", JSON.stringify(studentData));
     formData.append("file", data.image);
     addStudent(formData);
+
+    try {
+      const result = await addStudent(formData).unwrap();
+
+      console.log({ result });
+    } catch (error) {}
     // console.log(Object.fromEntries(formData));
   };
 
@@ -388,7 +394,12 @@ const CreateStudent = () => {
               />
             </Col>
           </Row>
-          <Button htmlType="submit" type="primary">
+          <Button
+            htmlType="submit"
+            type="primary"
+            loading={isLoading}
+            disabled={isLoading}
+          >
             Submit
           </Button>
         </PHForm>
