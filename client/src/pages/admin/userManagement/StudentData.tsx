@@ -4,7 +4,7 @@ import { TQueryParams, TStudent } from "../../../types";
 import { useState } from "react";
 import { useGetAllStudentsQuery } from "../../../redux/features/admin/userManagement.api";
 
-export type TTableData = Pick<TStudent, "name" | "id">;
+export type TTableData = Pick<TStudent, "fullName" | "id">;
 
 const StudentData = () => {
   const [params, setParams] = useState<TQueryParams[]>([]);
@@ -88,6 +88,7 @@ const StudentData = () => {
         dataSource={tableData}
         onChange={onChange}
         showSorterTooltip={{ target: "sorter-icon" }}
+        pagination={false}
       />
     </div>
   );
