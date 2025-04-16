@@ -1,4 +1,4 @@
-import { Button, Space, Table } from "antd";
+import { Button, Pagination, Space, Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
 import { TQueryParams, TStudent } from "../../../types";
 import { useState } from "react";
@@ -14,11 +14,13 @@ const StudentData = () => {
     isLoading,
     isFetching,
   } = useGetAllStudentsQuery([
-    { name: "limit", value: 10 },
+    { name: "limit", value: 3 },
     { name: "page", value: page },
     { name: "sort", value: "id" },
     ...params,
   ]);
+
+  const metaData = studentData?.meta;
 
   const tableData = studentData?.data?.map(({ _id, fullName, id }) => ({
     key: _id,
@@ -89,6 +91,11 @@ const StudentData = () => {
         onChange={onChange}
         showSorterTooltip={{ target: "sorter-icon" }}
         pagination={false}
+      />
+      <Pagination
+        onChange={(value) => setPage(value)}
+        pageSize={metaData?.limit}
+        total={metaData?.total}
       />
     </div>
   );
