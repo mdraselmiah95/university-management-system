@@ -26,16 +26,18 @@ const CreateAcademicDepartment = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const toastId = toast.loading("Creating Student...");
+
     try {
       const res = (await addAcademicDepartment(data)) as TResponse;
       if (res?.error) {
-        toast.error(res?.error?.data?.message);
+        toast.error(res?.error?.data?.message, { id: toastId });
       } else {
-        toast.success(res?.data?.message);
+        toast.success(res?.data?.message, { id: toastId });
         navigate("/admin/academic-department");
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong", { id: toastId });
     }
   };
 
