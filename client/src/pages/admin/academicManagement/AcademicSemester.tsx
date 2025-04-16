@@ -80,7 +80,7 @@ const AcademicSemester = () => {
     {
       title: "Action",
       key: "action",
-      render: () => {
+      render: (item) => {
         return (
           <div>
             <Button>Action</Button>
