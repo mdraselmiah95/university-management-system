@@ -88,6 +88,17 @@ export const adminPaths = [
       },
     ],
   },
+
+  {
+    name: "Course Management",
+    children: [
+      {
+        name: "Create Student",
+        path: "create-student",
+        element: <CreateStudent />,
+      },
+    ],
+  },
 ];
 
 // * Programmatically way
