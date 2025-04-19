@@ -6,12 +6,19 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import PHSelect from "../../../components/form/PHSelect";
 import { monthsOptions } from "../../../constants/globals";
-import { use } from "react";
 import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
+import { semesterStatusOptions } from "../../../constants/semester";
+import PHDatePicker from "../../../components/form/PHDataPicker";
+import PHInput from "../../../components/form/PHInput";
 
 const SemesterRegistration = () => {
   const { data: academicSemester, isLoading: academicSemesterLoading } =
-    useGetAllSemestersQuery(undefined);
+    useGetAllSemestersQuery([
+      {
+        name: "sort",
+        value: "year",
+      },
+    ]);
 
   const academicSemestersOptions = academicSemester?.data?.map((semester) => ({
     label: `${semester.name} ${semester.year}`,
@@ -71,6 +78,40 @@ const SemesterRegistration = () => {
             disabled={academicSemesterLoading}
             options={academicSemestersOptions}
           />
+
+          <PHSelect
+            label="Academic Status"
+            name="status"
+            placeholder="Select status"
+            options={semesterStatusOptions}
+          />
+
+          <PHDatePicker
+            name="startDate"
+            label="Start Date"
+            placeholder="Select start date"
+          />
+
+          <PHDatePicker
+            name="endDate"
+            label="End Date"
+            placeholder="Select end date"
+          />
+
+          <PHInput
+            type="text"
+            name="minCredit"
+            label="Min Credit"
+            placeholder="Min credit"
+          />
+
+          <PHInput
+            type="text"
+            name="maxCredit"
+            label="Max Credit"
+            placeholder="Max credit"
+          />
+
           <Button htmlType="submit" type="primary">
             Submit
           </Button>

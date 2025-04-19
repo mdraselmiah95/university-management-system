@@ -36,3 +36,9 @@ export const bloodGroupOptions = [
   { value: "O+", label: "O+" },
   { value: "O-", label: "O-" },
 ];
+
+export const semesterStatusOptions = [
+  { value: "UPCOMING", label: "Upcoming" },
+  { value: "ONGOING", label: "Ongoing" },
+  { value: "ENDED", label: "Ended" },
+];
