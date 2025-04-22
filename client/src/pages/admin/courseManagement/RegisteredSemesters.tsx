@@ -1,12 +1,10 @@
 import { Button, Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
-import { TAcademicSemester } from "../../../types";
+import { TSemester } from "../../../types";
 import { useGetAllRegisteredSemestersQuery } from "../../../redux/features/admin/courseManagement.api";
+import moment from "moment";
 
-export type TTableData = Pick<
-  TAcademicSemester,
-  "name" | "year" | "startMonth" | "endMonth"
->;
+export type TTableData = Pick<TSemester, "startDate" | "endDate" | "status">;
 
 const RegisteredSemesters = () => {
   const {
@@ -19,8 +17,8 @@ const RegisteredSemesters = () => {
     ({ _id, academicSemester, startDate, endDate, status }) => ({
       key: _id,
       name: `${academicSemester?.name} ${academicSemester?.year}`,
-      startDate,
-      endDate,
+      startDate: moment(new Date(startDate)).format("MMMM"),
+      endDate: moment(new Date(endDate)).format("MMMM"),
       status,
     })
   );
