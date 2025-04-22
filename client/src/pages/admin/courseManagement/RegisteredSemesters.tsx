@@ -44,8 +44,8 @@ const RegisteredSemesters = () => {
     })
   );
 
-  const handleStatusChange = (status: string) => {
-    console.log({ status });
+  const handleStatusChange = (data: string) => {
+    console.log({ data });
   };
 
   const menuProps = {
@@ -93,7 +93,7 @@ const RegisteredSemesters = () => {
       key: "action",
       render: (item) => {
         return (
-          <Dropdown>
+          <Dropdown menu={menuProps}>
             <Button>Action</Button>
           </Dropdown>
         );
