@@ -33,6 +33,7 @@ const courseManagementApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["semester"],
     }),
     updateRegisteredSemester: builder.mutation({
       query: (args) => ({
