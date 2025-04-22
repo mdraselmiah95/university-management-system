@@ -1,8 +1,7 @@
 import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
 import { Button, Table } from "antd";
 import type { TableColumnsType, TableProps } from "antd";
-import { TAcademicSemester, TQueryParams } from "../../../types";
-import { useState } from "react";
+import { TAcademicSemester } from "../../../types";
 
 export type TTableData = Pick<
   TAcademicSemester,
@@ -10,7 +9,6 @@ export type TTableData = Pick<
 >;
 
 const RegisteredSemesters = () => {
-  const [params, setParams] = useState<TQueryParams[] | undefined>(undefined);
   const {
     data: semesterData,
     isLoading,
@@ -32,50 +30,22 @@ const RegisteredSemesters = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      showSorterTooltip: { target: "full-header" },
-      filters: [
-        {
-          text: "Autumn",
-          value: "Autumn",
-        },
-        {
-          text: "Fall",
-          value: "Fall",
-        },
-        {
-          text: "Summer",
-          value: "Summer",
-        },
-      ],
     },
     {
-      title: "Year",
-      dataIndex: "year",
-      key: "year",
-      filters: [
-        {
-          text: "2025",
-          value: "2025",
-        },
-        {
-          text: "2026",
-          value: "2026",
-        },
-        {
-          text: "2027",
-          value: "2027",
-        },
-      ],
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+    },
+
+    {
+      title: "Start Date",
+      dataIndex: "startDate",
+      key: "startDate",
     },
     {
-      title: "Start Month",
-      dataIndex: "startMonth",
-      key: "startMonth",
-    },
-    {
-      title: "End Month",
-      dataIndex: "endMonth",
-      key: "endMonth",
+      title: "End Date",
+      dataIndex: "endDate",
+      key: "endDate",
     },
     {
       title: "Action",
@@ -95,21 +65,7 @@ const RegisteredSemesters = () => {
     filters,
     _sorter,
     extra
-  ) => {
-    console.log(filters, extra);
-
-    if (extra.action === "filter") {
-      const queryParams: TQueryParams[] = [];
-
-      filters?.name?.forEach((item) =>
-        queryParams.push({ name: "name", value: item })
-      );
-      filters?.year?.forEach((item) =>
-        queryParams.push({ name: "year", value: item })
-      );
-      setParams(queryParams);
-    }
-  };
+  ) => {};
 
   if (isLoading) {
     return <p>Loading..</p>;
