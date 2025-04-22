@@ -1,7 +1,10 @@
 import { Button, Dropdown, Table, Tag } from "antd";
 import type { MenuProps, TableColumnsType, TableProps } from "antd";
 import { TSemester } from "../../../types";
-import { useGetAllRegisteredSemestersQuery } from "../../../redux/features/admin/courseManagement.api";
+import {
+  useGetAllRegisteredSemestersQuery,
+  useUpdateRegisteredSemesterMutation,
+} from "../../../redux/features/admin/courseManagement.api";
 import moment from "moment";
 import { FcSportsMode } from "react-icons/fc";
 import { MdUpcoming } from "react-icons/md";
@@ -37,6 +40,7 @@ const RegisteredSemesters = () => {
     isFetching,
   } = useGetAllRegisteredSemestersQuery(undefined);
 
+  const [updateRegisteredSemester] = useUpdateRegisteredSemesterMutation();
   const tableData = semesterData?.data?.map(
     ({ _id, academicSemester, startDate, endDate, status }) => ({
       key: _id,
@@ -47,10 +51,14 @@ const RegisteredSemesters = () => {
     })
   );
 
-  console.log({ semesterId });
-
-  const handleStatusChange = (data: string) => {
-    console.log({ data });
+  const handleStatusChange = (data) => {
+    const updataData = {
+      id: semesterId,
+      data: {
+        status: data.key,
+      },
+    };
+    updateRegisteredSemester(updataData);
   };
 
   const menuProps = {
