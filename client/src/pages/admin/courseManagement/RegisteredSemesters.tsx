@@ -6,6 +6,7 @@ import moment from "moment";
 import { FcSportsMode } from "react-icons/fc";
 import { MdUpcoming } from "react-icons/md";
 import { FaHourglassEnd } from "react-icons/fa6";
+import { useState } from "react";
 
 export type TTableData = Pick<TSemester, "startDate" | "endDate" | "status">;
 
@@ -28,6 +29,8 @@ const items: MenuProps["items"] = [
 ];
 
 const RegisteredSemesters = () => {
+  const [semesterId, setSemesterId] = useState("");
+
   const {
     data: semesterData,
     isLoading,
@@ -43,6 +46,8 @@ const RegisteredSemesters = () => {
       status,
     })
   );
+
+  console.log({ semesterId });
 
   const handleStatusChange = (data: string) => {
     console.log({ data });
@@ -93,8 +98,8 @@ const RegisteredSemesters = () => {
       key: "action",
       render: (item) => {
         return (
-          <Dropdown menu={menuProps}>
-            <Button>Action</Button>
+          <Dropdown menu={menuProps} trigger={["click"]}>
+            <Button onClick={() => setSemesterId(item?.key)}>Update</Button>
           </Dropdown>
         );
       },
