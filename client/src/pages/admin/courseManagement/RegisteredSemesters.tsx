@@ -44,9 +44,13 @@ const RegisteredSemesters = () => {
     })
   );
 
+  const handleStatusChange = (status: string) => {
+    console.log({ status });
+  };
+
   const menuProps = {
     items,
-    onClick: handleMenuClick,
+    onClick: handleStatusChange,
   };
 
   const columns: TableColumnsType<TTableData> = [
