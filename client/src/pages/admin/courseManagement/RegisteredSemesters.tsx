@@ -1,10 +1,31 @@
-import { Button, Table } from "antd";
-import type { TableColumnsType, TableProps } from "antd";
+import { Button, Dropdown, Table, Tag } from "antd";
+import type { MenuProps, TableColumnsType, TableProps } from "antd";
 import { TSemester } from "../../../types";
 import { useGetAllRegisteredSemestersQuery } from "../../../redux/features/admin/courseManagement.api";
 import moment from "moment";
+import { FcSportsMode } from "react-icons/fc";
+import { MdUpcoming } from "react-icons/md";
+import { FaHourglassEnd } from "react-icons/fa6";
 
 export type TTableData = Pick<TSemester, "startDate" | "endDate" | "status">;
+
+const items: MenuProps["items"] = [
+  {
+    label: "Upcoming",
+    key: "UPCOMING",
+    icon: <MdUpcoming />,
+  },
+  {
+    label: "Ongoing",
+    key: "ONGOING",
+    icon: <FcSportsMode />,
+  },
+  {
+    label: "Ended",
+    key: "ENDED",
+    icon: <FaHourglassEnd />,
+  },
+];
 
 const RegisteredSemesters = () => {
   const {
@@ -23,6 +44,11 @@ const RegisteredSemesters = () => {
     })
   );
 
+  const menuProps = {
+    items,
+    onClick: handleMenuClick,
+  };
+
   const columns: TableColumnsType<TTableData> = [
     {
       title: "Name",
@@ -33,6 +59,19 @@ const RegisteredSemesters = () => {
       title: "Status",
       dataIndex: "status",
       key: "status",
+      render: (item) => {
+        let color;
+        if (item === "UPCOMING") {
+          color = "blue";
+        }
+        if (item === "ONGOING") {
+          color = "green";
+        }
+        if (item === "ENDED") {
+          color = "red";
+        }
+        return <Tag color={color}>{item}</Tag>;
+      },
     },
 
     {
@@ -50,9 +89,9 @@ const RegisteredSemesters = () => {
       key: "action",
       render: (item) => {
         return (
-          <div>
+          <Dropdown>
             <Button>Action</Button>
-          </div>
+          </Dropdown>
         );
       },
     },
