@@ -4,10 +4,7 @@ import { toast } from "sonner";
 import { TResponse } from "../../../types";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import PHSelect from "../../../components/form/PHSelect";
-import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
-import { semesterStatusOptions } from "../../../constants/semester";
-import PHDatePicker from "../../../components/form/PHDataPicker";
+
 import PHInput from "../../../components/form/PHInput";
 import { useAddRegisteredSemesterMutation } from "../../../redux/features/admin/courseManagement.api";
 
@@ -30,20 +27,7 @@ const dataC = {
 };
 
 const CreateCourse = () => {
-  const { data: academicSemester, isLoading: academicSemesterLoading } =
-    useGetAllSemestersQuery([
-      {
-        name: "sort",
-        value: "year",
-      },
-    ]);
-
   const [addRegisteredSemester] = useAddRegisteredSemesterMutation();
-
-  const academicSemestersOptions = academicSemester?.data?.map((semester) => ({
-    label: `${semester.name} ${semester.year}`,
-    value: semester._id,
-  }));
 
   const navigate = useNavigate();
 
@@ -70,9 +54,8 @@ const CreateCourse = () => {
   };
   return (
     <div>
-      {" "}
       <Card
-        title="Semester Registration"
+        title="Create Course"
         style={{
           width: "auto",
           maxWidth: "400px",
@@ -85,36 +68,11 @@ const CreateCourse = () => {
           onSubmit={onSubmit}
           // resolver={zodResolver(academicSemesterSchema)}
         >
-          <PHSelect
-            label="Academic Semester"
-            name="academicSemester"
-            placeholder="Select academic semester"
-            disabled={academicSemesterLoading}
-            options={academicSemestersOptions}
-          />
-
-          <PHSelect
-            label="Academic Status"
-            name="status"
-            placeholder="Select status"
-            options={semesterStatusOptions}
-          />
-
-          <PHDatePicker
-            name="startDate"
-            label="Start Date"
-            placeholder="Select start date"
-          />
-
-          <PHDatePicker
-            name="endDate"
-            label="End Date"
-            placeholder="Select end date"
-          />
+          <PHInput type="text" name="title" label="Title" placeholder="title" />
 
           <PHInput
             type="text"
-            name="minCredit"
+            name="prefix"
             label="Min Credit"
             placeholder="Min credit"
           />
