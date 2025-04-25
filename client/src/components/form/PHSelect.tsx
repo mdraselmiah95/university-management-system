@@ -7,7 +7,7 @@ type TPHSelectProps = {
   placeholder?: string;
   options: { value: string; label: string; disabled?: boolean }[] | undefined;
   disabled?: boolean;
-  mode?: string | undefined;
+  mode?: "multiple" | undefined;
 };
 
 const PHSelect = ({

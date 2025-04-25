@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import PHInput from "../../../components/form/PHInput";
 import { useAddRegisteredSemesterMutation } from "../../../redux/features/admin/courseManagement.api";
+import PHSelect from "../../../components/form/PHSelect";
 
 const dataC = {
   title: "Dom Manipulation",
@@ -83,6 +84,22 @@ const CreateCourse = () => {
             name="credits"
             label="Credits"
             placeholder="credits"
+          />
+
+          <PHSelect
+            mode="multiple"
+            name="preRequisiteCourses"
+            label="Pre-Requisite Courses"
+            options={[
+              {
+                label: "Course 1",
+                value: "course1",
+              },
+              {
+                label: "Course 2",
+                value: "course2",
+              },
+            ]}
           />
 
           <Button htmlType="submit" type="primary">
