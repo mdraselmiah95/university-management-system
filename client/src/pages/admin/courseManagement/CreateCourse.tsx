@@ -73,15 +73,16 @@ const CreateCourse = () => {
           <PHInput
             type="text"
             name="prefix"
-            label="Min Credit"
-            placeholder="Min credit"
+            label="Prefix"
+            placeholder="prefix"
           />
 
+          <PHInput type="text" name="code" label="Code" placeholder="code" />
           <PHInput
             type="text"
-            name="maxCredit"
-            label="Max Credit"
-            placeholder="Max credit"
+            name="credits"
+            label="Credits"
+            placeholder="credits"
           />
 
           <Button htmlType="submit" type="primary">
