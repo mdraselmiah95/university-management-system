@@ -6,7 +6,10 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import PHInput from "../../../components/form/PHInput";
-import { useAddRegisteredSemesterMutation } from "../../../redux/features/admin/courseManagement.api";
+import {
+  useAddRegisteredSemesterMutation,
+  useGetAllCoursesQuery,
+} from "../../../redux/features/admin/courseManagement.api";
 import PHSelect from "../../../components/form/PHSelect";
 
 const dataC = {
@@ -31,6 +34,16 @@ const CreateCourse = () => {
   const [addRegisteredSemester] = useAddRegisteredSemesterMutation();
 
   const navigate = useNavigate();
+
+  const { data: courseData } = useGetAllCoursesQuery();
+
+  const preRequisiteCoursesOptions = courseData?.data?.map((course) => ({
+    label: `${course?.title} ${course?.prefix} ${course?.code}`,
+    value: course?._id,
+  }));
+  console.log({ preRequisiteCoursesOptions });
+
+  console.log({ courseData });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Creating Semester...");
