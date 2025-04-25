@@ -7,6 +7,7 @@ type TPHSelectProps = {
   placeholder?: string;
   options: { value: string; label: string; disabled?: boolean }[] | undefined;
   disabled?: boolean;
+  mode?: string | undefined;
 };
 
 const PHSelect = ({
@@ -15,6 +16,7 @@ const PHSelect = ({
   placeholder = "name",
   options,
   disabled = false,
+  mode,
 }: TPHSelectProps) => {
   return (
     <Controller
@@ -26,6 +28,7 @@ const PHSelect = ({
           validateStatus={error ? "error" : ""}
         >
           <Select
+            mode={mode}
             style={{ width: "100%" }}
             {...field}
             placeholder={placeholder}
