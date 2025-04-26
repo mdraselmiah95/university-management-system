@@ -29,6 +29,8 @@ const CreateCourse = () => {
 
     const courseData = {
       ...data,
+      code: Number(data?.code),
+      credits: Number(data?.credits),
       isDeleted: false,
       preRequisiteCourses: data?.preRequisiteCourses?.map((item: any) => ({
         course: item,
@@ -44,7 +46,7 @@ const CreateCourse = () => {
         toast.error(res?.error?.data?.message, { id: toastId });
       } else {
         toast.success(res?.data?.message, { id: toastId });
-        // navigate("/admin/registered-semesters");
+        navigate("/admin/courses");
       }
     } catch (error) {
       toast.error("Something went wrong");
