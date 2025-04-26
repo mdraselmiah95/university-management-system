@@ -35,23 +35,23 @@ const CreateCourse = () => {
 
   const navigate = useNavigate();
 
-  const { data: courseData } = useGetAllCoursesQuery();
+  const { data: courseData } = useGetAllCoursesQuery(undefined);
 
-  const preRequisiteCoursesOptions = courseData?.data?.map((course) => ({
-    label: `${course?.title} ${course?.prefix} ${course?.code}`,
-    value: course?._id,
+  const preRequisiteCoursesOptions = courseData?.data?.map((item) => ({
+    value: item?._id,
+    label: `${item?.title}`,
   }));
-  console.log({ preRequisiteCoursesOptions });
-
-  console.log({ courseData });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Creating Semester...");
 
-    const semesterData = {
+    const courseData = {
       ...data,
-      minCredit: Number(data?.minCredit),
-      maxCredit: Number(data?.maxCredit),
+      isDeleted: false,
+      preRequisiteCourses: data?.preRequisiteCourses?.map((item: any) => ({
+        course: item,
+        isDeleted: false,
+      })),
     };
 
     try {
@@ -103,16 +103,7 @@ const CreateCourse = () => {
             mode="multiple"
             name="preRequisiteCourses"
             label="Pre-Requisite Courses"
-            options={[
-              {
-                label: "Course 1",
-                value: "course1",
-              },
-              {
-                label: "Course 2",
-                value: "course2",
-              },
-            ]}
+            options={preRequisiteCoursesOptions}
           />
 
           <Button htmlType="submit" type="primary">
