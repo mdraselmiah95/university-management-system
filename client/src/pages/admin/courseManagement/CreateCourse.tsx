@@ -7,31 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 import PHInput from "../../../components/form/PHInput";
 import {
-  useAddRegisteredSemesterMutation,
+  useAddCourseMutation,
   useGetAllCoursesQuery,
 } from "../../../redux/features/admin/courseManagement.api";
 import PHSelect from "../../../components/form/PHSelect";
 
-const dataC = {
-  title: "Dom Manipulation",
-  prefix: "JS",
-  code: 108,
-  credits: 3,
-  isDeleted: false,
-  preRequisiteCourses: [
-    {
-      course: "65b5ff53d6ffdd9bfc058320",
-      isDeleted: false,
-    },
-    {
-      course: "65b5ffc2d6ffdd9bfc058326",
-      isDeleted: false,
-    },
-  ],
-};
-
 const CreateCourse = () => {
-  const [addRegisteredSemester] = useAddRegisteredSemesterMutation();
+  const [addCourse] = useAddCourseMutation();
 
   const navigate = useNavigate();
 
@@ -55,12 +37,12 @@ const CreateCourse = () => {
     };
 
     try {
-      const res = (await addRegisteredSemester(semesterData)) as TResponse<any>;
+      const res = (await addCourse(courseData)) as TResponse<any>;
       if (res?.error) {
         toast.error(res?.error?.data?.message, { id: toastId });
       } else {
         toast.success(res?.data?.message, { id: toastId });
-        navigate("/admin/registered-semesters");
+        // navigate("/admin/registered-semesters");
       }
     } catch (error) {
       toast.error("Something went wrong");
