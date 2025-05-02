@@ -3,14 +3,11 @@ import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManag
 import { Button, Modal, Table } from "antd";
 
 const Courses = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const {
     data: courseData,
     isFetching,
     isLoading,
   } = useGetAllCoursesQuery(undefined);
-  console.log({ courseData });
 
   const tableData = courseData?.data?.map(({ _id, title, prefix, code }) => ({
     key: _id,
@@ -18,18 +15,6 @@ const Courses = () => {
     prefix,
     code: `${prefix} ${code}`,
   }));
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
 
   const columns = [
     {
@@ -48,11 +33,7 @@ const Courses = () => {
       title: "Action",
       key: "action",
       render: () => {
-        return (
-          <div>
-            <Button onClick={() => showModal()}>Assign Faculty</Button>
-          </div>
-        );
+        return <AddFacultyModal />;
       },
     },
   ];
@@ -63,6 +44,33 @@ const Courses = () => {
 
   return (
     <div>
+      <Table
+        loading={isFetching}
+        columns={columns}
+        dataSource={tableData}
+        showSorterTooltip={{ target: "sorter-icon" }}
+      />
+    </div>
+  );
+};
+
+const AddFacultyModal = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  return (
+    <>
+      <Button onClick={showModal}>Add Faculty</Button>
       <Modal
         title="Basic Modal"
         open={isModalOpen}
@@ -73,13 +81,7 @@ const Courses = () => {
         <p>Some contents...</p>
         <p>Some contents...</p>
       </Modal>
-      <Table
-        loading={isFetching}
-        columns={columns}
-        dataSource={tableData}
-        showSorterTooltip={{ target: "sorter-icon" }}
-      />
-    </div>
+    </>
   );
 };
 
