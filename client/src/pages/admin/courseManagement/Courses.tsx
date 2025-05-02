@@ -1,9 +1,10 @@
-import { TableColumnsType } from "antd";
+import { useState } from "react";
 import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagement.api";
-import type { TableProps } from "antd";
-import { Button, Table } from "antd";
+import { Button, Modal, Table } from "antd";
 
 const Courses = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const {
     data: courseData,
     isFetching,
@@ -17,6 +18,18 @@ const Courses = () => {
     prefix,
     code: `${prefix} ${code}`,
   }));
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const columns = [
     {
@@ -37,7 +50,7 @@ const Courses = () => {
       render: () => {
         return (
           <div>
-            <Button>Assign Faculty</Button>
+            <Button onClick={() => showModal()}>Assign Faculty</Button>
           </div>
         );
       },
@@ -50,6 +63,16 @@ const Courses = () => {
 
   return (
     <div>
+      <Modal
+        title="Basic Modal"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
       <Table
         loading={isFetching}
         columns={columns}
