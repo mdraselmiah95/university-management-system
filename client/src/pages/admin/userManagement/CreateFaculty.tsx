@@ -27,6 +27,7 @@ import { bloodGroupOptions, genderOptions } from "../../../constants/semester";
 import PHDatePicker from "../../../components/form/PHDataPicker";
 import { RiContactsFill } from "react-icons/ri";
 import { useGetAcademicDepartmentsQuery } from "../../../redux/features/admin/academicManagement.api";
+import { toast } from "sonner";
 
 const CreateFaculty = () => {
   const { data: departmentData, isLoading: dIsLoading } =
@@ -41,7 +42,29 @@ const CreateFaculty = () => {
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
+    const toastId = toast.loading("Creating Faculty...");
+    const facultyData = {
+      password: "faculty01",
+      faculty: data,
+    };
+
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(facultyData));
+    formData.append("file", data.image);
+    addUserAcademicFaculty(formData);
+
+    try {
+      const result = (await addUserAcademicFaculty(formData)) as TResponse;
+      console.log(result);
+      if (result?.error) {
+        toast.error(result?.error?.data?.message, { id: toastId });
+      } else {
+        toast.success(result?.data?.message, { id: toastId });
+        // navigate("/admin/students-data");
+      }
+    } catch (error) {
+      toast.error("Something went wrong", { id: toastId });
+    }
   };
 
   return (
