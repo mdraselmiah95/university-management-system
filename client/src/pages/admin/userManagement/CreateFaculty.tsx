@@ -6,19 +6,16 @@ const facultyDefaultData = {
     lastName: "Rahman",
   },
   gender: "male",
-  email: "faculty3@gmail.com",
-
   contactNo: "123",
   emergencyContactNo: "123",
   bloogGroup: "A+",
   presentAddress: "123 Main St, Cityville",
   permanentAddress: "456 Oak St, Townsville",
-  academicDepartment: "65b00fb010b74fcbd7a25d8e",
 };
 
 import { Button, Card, Col, Divider, Form, Input, Row } from "antd";
 import { useAddUserAcademicFacultyMutation } from "../../../redux/features/admin/userManagement.api";
-import { FcBusinessman, FcGraduationCap, FcPortraitMode } from "react-icons/fc";
+import { FcBusinessman, FcGraduationCap } from "react-icons/fc";
 import PHForm from "../../../components/form/PHForm";
 import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import PHSelect from "../../../components/form/PHSelect";
