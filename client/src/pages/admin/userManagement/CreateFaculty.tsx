@@ -1,22 +1,19 @@
 const facultyDefaultData = {
-  password: "faculty123",
-  faculty: {
-    designation: "Lecturer",
-    name: {
-      firstName: "Mridul ",
-      middleName: "Das",
-      lastName: "Rahman",
-    },
-    gender: "male",
-    email: "faculty3@gmail.com",
-    dateOfBirth: "1990-01-01",
-    contactNo: "123",
-    emergencyContactNo: "123",
-    bloogGroup: "A+",
-    presentAddress: "123 Main St, Cityville",
-    permanentAddress: "456 Oak St, Townsville",
-    academicDepartment: "65b00fb010b74fcbd7a25d8e",
+  designation: "Lecturer",
+  name: {
+    firstName: "Mridul ",
+    middleName: "Das",
+    lastName: "Rahman",
   },
+  gender: "male",
+  email: "faculty3@gmail.com",
+
+  contactNo: "123",
+  emergencyContactNo: "123",
+  bloogGroup: "A+",
+  presentAddress: "123 Main St, Cityville",
+  permanentAddress: "456 Oak St, Townsville",
+  academicDepartment: "65b00fb010b74fcbd7a25d8e",
 };
 
 import { Button, Card, Col, Divider, Form, Input, Row } from "antd";
@@ -29,10 +26,19 @@ import PHInput from "../../../components/form/PHInput";
 import { bloodGroupOptions, genderOptions } from "../../../constants/semester";
 import PHDatePicker from "../../../components/form/PHDataPicker";
 import { RiContactsFill } from "react-icons/ri";
+import { useGetAcademicDepartmentsQuery } from "../../../redux/features/admin/academicManagement.api";
 
 const CreateFaculty = () => {
+  const { data: departmentData, isLoading: dIsLoading } =
+    useGetAcademicDepartmentsQuery(undefined);
+
   const [addUserAcademicFaculty, { isLoading }] =
     useAddUserAcademicFacultyMutation();
+
+  const departmentOptions = departmentData?.data?.map((item) => ({
+    value: item._id,
+    label: `${item.name}`,
+  }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log(data);
@@ -215,6 +221,18 @@ const CreateFaculty = () => {
               <span>Academic Info</span>
             </div>
           </Divider>
+
+          <Row gutter={8}>
+            <Col span={24} md={{ span: 12 }}>
+              <PHSelect
+                label="Select Department"
+                name="academicDepartment"
+                placeholder="Select your department"
+                disabled={dIsLoading}
+                options={departmentOptions}
+              />
+            </Col>
+          </Row>
           <Button
             htmlType="submit"
             type="primary"
