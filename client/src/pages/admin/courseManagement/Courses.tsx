@@ -4,7 +4,6 @@ import { Button, Modal, Table } from "antd";
 import { useGetAllFacultiesQuery } from "../../../redux/features/admin/userManagement.api";
 import PHForm from "../../../components/form/PHForm";
 import PHSelect from "../../../components/form/PHSelect";
-import { useGetAcademicFacultiesQuery } from "../../../redux/features/admin/academicManagement.api";
 
 const Courses = () => {
   const {
@@ -60,13 +59,9 @@ const Courses = () => {
 
 const AddFacultyModal = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const {
-    data: FacultyData,
-    isLoading,
-    isFetching,
-  } = useGetAcademicFacultiesQuery(undefined);
+  const { data: facultyData } = useGetAllFacultiesQuery(undefined);
 
-  console.log({ FacultyData, data });
+  console.log({ facultyData, data });
 
   const handleSubmit = (data) => {
     console.log({ data });
