@@ -28,6 +28,7 @@ import PHSelect from "../../../components/form/PHSelect";
 import PHInput from "../../../components/form/PHInput";
 import { bloodGroupOptions, genderOptions } from "../../../constants/semester";
 import PHDatePicker from "../../../components/form/PHDataPicker";
+import { RiContactsFill } from "react-icons/ri";
 
 const CreateFaculty = () => {
   const [addUserAcademicFaculty, { isLoading }] =
@@ -68,6 +69,18 @@ const CreateFaculty = () => {
           defaultValues={facultyDefaultData}
           // resolver={zodResolver(academicSemesterSchema)}
         >
+          <Divider>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <FcBusinessman />
+              <span>Personal Info</span>
+            </div>
+          </Divider>
           <Row gutter={8}>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput
@@ -130,6 +143,61 @@ const CreateFaculty = () => {
                     />
                   </Form.Item>
                 )}
+              />
+            </Col>
+          </Row>
+          <Divider>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <RiContactsFill />
+              <span>Contact Info</span>
+            </div>
+          </Divider>
+          <Row gutter={8}>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="email"
+                placeholder="Your valid email"
+                type="text"
+                label="Email"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="contactNo"
+                placeholder="Your contact number"
+                type="text"
+                label="Contact Number"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="emergencyContactNo"
+                placeholder="Your valid emergency content"
+                type="text"
+                label="Emergency Contact Number"
+              />
+            </Col>
+
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="presentAddress"
+                placeholder="Your present address"
+                type="text"
+                label="Present Address"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHInput
+                name="permanentAddress"
+                placeholder="Your permanent address"
+                type="text"
+                label="Permanent Address"
               />
             </Col>
           </Row>
