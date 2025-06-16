@@ -21,7 +21,7 @@ const facultyDefaultData = {
 
 import { Button, Card, Col, Divider, Form, Input, Row } from "antd";
 import { useAddUserAcademicFacultyMutation } from "../../../redux/features/admin/userManagement.api";
-import { FcBusinessman, FcPortraitMode } from "react-icons/fc";
+import { FcBusinessman, FcGraduationCap, FcPortraitMode } from "react-icons/fc";
 import PHForm from "../../../components/form/PHForm";
 import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import PHSelect from "../../../components/form/PHSelect";
@@ -201,6 +201,28 @@ const CreateFaculty = () => {
               />
             </Col>
           </Row>
+
+          {/* Academic info */}
+          <Divider>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              }}
+            >
+              <FcGraduationCap />
+              <span>Academic Info</span>
+            </div>
+          </Divider>
+          <Button
+            htmlType="submit"
+            type="primary"
+            loading={isLoading}
+            disabled={isLoading}
+          >
+            Submit
+          </Button>
         </PHForm>
       </Card>
     </>
