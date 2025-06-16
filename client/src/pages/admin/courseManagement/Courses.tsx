@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagement.api";
 import { Button, Modal, Table } from "antd";
 import { useGetAllFacultiesQuery } from "../../../redux/features/admin/userManagement.api";
+import PHForm from "../../../components/form/PHForm";
+import PHSelect from "../../../components/form/PHSelect";
+import { useGetAcademicFacultiesQuery } from "../../../redux/features/admin/academicManagement.api";
 
 const Courses = () => {
   const {
@@ -57,8 +60,18 @@ const Courses = () => {
 
 const AddFacultyModal = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data: facultyData } = useGetAllFacultiesQuery(undefined);
-  console.log({ facultyData });
+  const {
+    data: FacultyData,
+    isLoading,
+    isFetching,
+  } = useGetAcademicFacultiesQuery(undefined);
+
+  console.log({ FacultyData, data });
+
+  const handleSubmit = (data) => {
+    console.log({ data });
+  };
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -79,9 +92,9 @@ const AddFacultyModal = ({ data }) => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <PHForm onSubmit={handleSubmit}>
+          <PHSelect label="" />
+        </PHForm>
       </Modal>
     </>
   );
