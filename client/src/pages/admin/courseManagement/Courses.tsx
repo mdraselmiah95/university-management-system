@@ -75,8 +75,8 @@ const AddFacultyModal = ({ data }) => {
       courseId: data?.key,
       data: formData,
     };
-    console.log({ facultyData });
     addFaculties(facultyData);
+    setIsModalOpen(false);
   };
 
   const showModal = () => {
