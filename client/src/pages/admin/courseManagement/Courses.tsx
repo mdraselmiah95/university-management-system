@@ -60,7 +60,7 @@ const Courses = () => {
   );
 };
 
-const AddFacultyModal = () => {
+const AddFacultyModal = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: facultyData } = useGetAllFacultiesQuery(undefined);
   const [addFaculties] = useAddFacultiesMutation();
@@ -70,8 +70,13 @@ const AddFacultyModal = () => {
     label: `${item?.fullName}`,
   }));
 
-  const handleSubmit = (data) => {
-    console.log({ data });
+  const handleSubmit = (formData) => {
+    const facultyData = {
+      courseId: data?.key,
+      data: formData,
+    };
+    console.log({ facultyData });
+    addFaculties(facultyData);
   };
 
   const showModal = () => {
