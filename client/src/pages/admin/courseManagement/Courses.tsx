@@ -61,7 +61,12 @@ const AddFacultyModal = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: facultyData } = useGetAllFacultiesQuery(undefined);
 
-  console.log({ facultyData, data });
+  const facultiesOptions = facultyData?.data?.map((item) => ({
+    value: item?._id,
+    label: `${item?.fullName}`,
+  }));
+
+  console.log({ facultyData, data, facultiesOptions });
 
   const handleSubmit = (data) => {
     console.log({ data });
@@ -88,7 +93,11 @@ const AddFacultyModal = ({ data }) => {
         onCancel={handleCancel}
       >
         <PHForm onSubmit={handleSubmit}>
-          <PHSelect label="" />
+          <PHSelect
+            label="Faculty"
+            name="faculties"
+            options={facultiesOptions}
+          />
         </PHForm>
       </Modal>
     </>
