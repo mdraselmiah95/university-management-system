@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagement.api";
+import {
+  useAddFacultiesMutation,
+  useGetAllCoursesQuery,
+} from "../../../redux/features/admin/courseManagement.api";
 import { Button, Modal, Table } from "antd";
 import { useGetAllFacultiesQuery } from "../../../redux/features/admin/userManagement.api";
 import PHForm from "../../../components/form/PHForm";
@@ -57,16 +60,15 @@ const Courses = () => {
   );
 };
 
-const AddFacultyModal = ({ data }) => {
+const AddFacultyModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: facultyData } = useGetAllFacultiesQuery(undefined);
+  const [addFaculties] = useAddFacultiesMutation();
 
   const facultiesOptions = facultyData?.data?.map((item) => ({
     value: item?._id,
     label: `${item?.fullName}`,
   }));
-
-  console.log({ facultyData, data, facultiesOptions });
 
   const handleSubmit = (data) => {
     console.log({ data });
@@ -94,10 +96,14 @@ const AddFacultyModal = ({ data }) => {
       >
         <PHForm onSubmit={handleSubmit}>
           <PHSelect
+            mode="multiple"
             label="Faculty"
             name="faculties"
             options={facultiesOptions}
           />
+          <Button htmlType="submit" type="primary">
+            Submit
+          </Button>
         </PHForm>
       </Modal>
     </>
