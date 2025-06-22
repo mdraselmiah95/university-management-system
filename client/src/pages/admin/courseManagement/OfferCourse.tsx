@@ -33,7 +33,7 @@ const OfferCourse = () => {
     useGetAcademicDepartmentsQuery(undefined);
   const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);
 
-  const academicSemesterOptions = academicFacultyData?.data?.map((item) => ({
+  const academicFacultyOptions = academicFacultyData?.data?.map((item) => ({
     value: item._id,
     label: item.name,
   }));
@@ -67,9 +67,9 @@ const OfferCourse = () => {
         >
           <PHSelectWithWatch
             onValueChange={setId}
-            label="Academic Semester"
-            name="academicSemester"
-            options={academicSemesterOptions}
+            label="Academic Faculty"
+            name="academicFaculty"
+            options={academicFacultyOptions}
           />
 
           <PHSelect
