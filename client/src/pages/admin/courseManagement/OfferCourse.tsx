@@ -6,6 +6,7 @@ import PHInput from "../../../components/form/PHInput";
 import { useGetAcademicFacultiesQuery } from "../../../redux/features/admin/academicManagement.api";
 import PHSelectWithWatch from "../../../components/form/PHSelectWithWatch";
 import { useState } from "react";
+import PHTimePicker from "../../../components/form/PHTimePicker";
 
 const offerCourseData = {
   semesterRegistration: "65b6185f13c0a33cdf61589a",
@@ -60,6 +61,9 @@ const OfferCourse = () => {
           />
 
           <PHInput disabled={!id} type="text" name="test" label="Test" />
+
+          <PHTimePicker name="startTime" label="Start Time" />
+          <PHTimePicker name="endTime" label="End Time" />
 
           <Button htmlType="submit" type="primary">
             Submit
