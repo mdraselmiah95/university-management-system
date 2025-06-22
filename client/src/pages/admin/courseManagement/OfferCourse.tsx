@@ -33,7 +33,6 @@ const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");
   const [id, setId] = useState("");
 
-  console.log("Inside parent component", courseId);
   const { data: academicDepartmentsData } =
     useGetAcademicDepartmentsQuery(undefined);
   const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);
@@ -60,8 +59,10 @@ const OfferCourse = () => {
     label: `${item.title}`,
   }));
 
-  const { data: facultiesData, isFetching: fetchingFaculies } =
+  const { data: facultiesData, isFetching: fetchingFaculties } =
     useGetCourseFacultiesQuery(courseId);
+
+  console.log({ facultiesData });
 
   const facultyOptions = facultiesData?.data?.faculties?.map((item) => ({
     value: item._id,
@@ -110,7 +111,7 @@ const OfferCourse = () => {
           />
           {/* <PHInput disabled={!id} type="text" name="test" label="Test" /> */}
           <PHSelect
-            disabled={!courseId}
+            disabled={!courseId || fetchingFaculties}
             options={facultyOptions}
             name="faculty"
             label="Faculty"
