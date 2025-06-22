@@ -10,8 +10,6 @@ const AcademicDepartment = () => {
     isFetching,
   } = useGetAcademicDepartmentsQuery(undefined);
 
-  console.log({ DepartmentData });
-
   const tableData = DepartmentData?.data?.map(({ _id, name }) => ({
     key: _id,
     name,

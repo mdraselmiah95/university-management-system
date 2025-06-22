@@ -11,6 +11,7 @@ import PHSelectWithWatch from "../../../components/form/PHSelectWithWatch";
 import { useState } from "react";
 import PHTimePicker from "../../../components/form/PHTimePicker";
 import { weekDaysOptions } from "../../../constants/globals";
+import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagement.api";
 
 const offerCourseData = {
   semesterRegistration: "65b6185f13c0a33cdf61589a",
@@ -32,6 +33,11 @@ const OfferCourse = () => {
   const { data: academicDepartmentsData } =
     useGetAcademicDepartmentsQuery(undefined);
   const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);
+  const {
+    data: courseData,
+    isFetching,
+    isLoading,
+  } = useGetAllCoursesQuery(undefined);
 
   const academicFacultyOptions = academicFacultyData?.data?.map((item) => ({
     value: item._id,
@@ -44,6 +50,11 @@ const OfferCourse = () => {
       label: item.name,
     })
   );
+
+  const courseOptions = courseData?.data?.map((item) => ({
+    value: item._id,
+    label: `${item.title}`,
+  }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log("Form submitted with data:", data);
@@ -78,7 +89,13 @@ const OfferCourse = () => {
             options={academicDepartmentOptions}
           />
 
-          <PHInput disabled={!id} type="text" name="test" label="Test" />
+          <PHSelect
+            label="Course"
+            name="course"
+            options={courseOptions}
+            disabled={isFetching || isLoading}
+          />
+          {/* <PHInput disabled={!id} type="text" name="test" label="Test" /> */}
           <PHSelect options={[]} name="faculty" label="Faculty" />
           <PHInput type="text" name="section" label="Section" />
           <PHInput type="text" name="maxCapacity" label="Max Capacity" />
