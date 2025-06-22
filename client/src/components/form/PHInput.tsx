@@ -6,9 +6,16 @@ type TInputProps = {
   name: string;
   label?: string;
   placeholder?: string;
+  disabled?: boolean;
 };
 
-const PHInput = ({ type, name, label, placeholder = "Name" }: TInputProps) => {
+const PHInput = ({
+  type,
+  name,
+  label,
+  placeholder = "Name",
+  disabled = false,
+}: TInputProps) => {
   return (
     <div
       style={{
@@ -31,6 +38,7 @@ const PHInput = ({ type, name, label, placeholder = "Name" }: TInputProps) => {
               placeholder={placeholder}
               size="large"
               allowClear
+              disabled={disabled}
             />
           </Form.Item>
         )}
