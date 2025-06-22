@@ -11,7 +11,10 @@ import PHSelectWithWatch from "../../../components/form/PHSelectWithWatch";
 import { useState } from "react";
 import PHTimePicker from "../../../components/form/PHTimePicker";
 import { weekDaysOptions } from "../../../constants/globals";
-import { useGetAllCoursesQuery } from "../../../redux/features/admin/courseManagement.api";
+import {
+  useGetAllCoursesQuery,
+  useGetCourseFacultiesQuery,
+} from "../../../redux/features/admin/courseManagement.api";
 
 const offerCourseData = {
   semesterRegistration: "65b6185f13c0a33cdf61589a",
@@ -27,9 +30,10 @@ const offerCourseData = {
 };
 
 const OfferCourse = () => {
+  const [courseId, setCourseId] = useState("");
   const [id, setId] = useState("");
 
-  console.log("Inside parent component", id);
+  console.log("Inside parent component", courseId);
   const { data: academicDepartmentsData } =
     useGetAcademicDepartmentsQuery(undefined);
   const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);
@@ -54,6 +58,14 @@ const OfferCourse = () => {
   const courseOptions = courseData?.data?.map((item) => ({
     value: item._id,
     label: `${item.title}`,
+  }));
+
+  const { data: facultiesData, isFetching: fetchingFaculies } =
+    useGetCourseFacultiesQuery(courseId);
+
+  const facultyOptions = facultiesData?.data?.faculties?.map((item) => ({
+    value: item._id,
+    label: item.fullName,
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -89,14 +101,20 @@ const OfferCourse = () => {
             options={academicDepartmentOptions}
           />
 
-          <PHSelect
+          <PHSelectWithWatch
+            onValueChange={setCourseId}
             label="Course"
             name="course"
             options={courseOptions}
             disabled={isFetching || isLoading}
           />
           {/* <PHInput disabled={!id} type="text" name="test" label="Test" /> */}
-          <PHSelect options={[]} name="faculty" label="Faculty" />
+          <PHSelect
+            disabled={!courseId}
+            options={facultyOptions}
+            name="faculty"
+            label="Faculty"
+          />
           <PHInput type="text" name="section" label="Section" />
           <PHInput type="text" name="maxCapacity" label="Max Capacity" />
 
