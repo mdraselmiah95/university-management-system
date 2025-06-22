@@ -1,5 +1,11 @@
 import { Button, Card } from "antd";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import PHForm from "../../../components/form/PHForm";
+import PHSelect from "../../../components/form/PHSelect";
+import PHInput from "../../../components/form/PHInput";
+import { useGetAcademicFacultiesQuery } from "../../../redux/features/admin/academicManagement.api";
+import PHSelectWithWatch from "../../../components/form/PHSelectWithWatch";
+import { useState } from "react";
 
 const offerCourseData = {
   semesterRegistration: "65b6185f13c0a33cdf61589a",
@@ -15,6 +21,14 @@ const offerCourseData = {
 };
 
 const OfferCourse = () => {
+  const [id, setId] = useState("");
+  const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);
+
+  const academicSemesterOptions = academicFacultyData?.data?.map((item) => ({
+    value: item._id,
+    label: item.name,
+  }));
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log("Form submitted with data:", data);
   };
@@ -35,38 +49,11 @@ const OfferCourse = () => {
           onSubmit={onSubmit}
           // resolver={zodResolver(academicSemesterSchema)}
         >
-          <PHSelect
+          <PHSelectWithWatch
+            onValueChange={setId}
             label="Academic Semester"
             name="academicSemester"
-            placeholder="Select academic semester"
-            disabled={academicSemesterLoading}
-            options={academicSemestersOptions}
-          />
-
-          <PHSelect
-            label="Academic Status"
-            name="status"
-            placeholder="Select status"
-            options={semesterStatusOptions}
-          />
-
-          <PHDatePicker
-            name="startDate"
-            label="Start Date"
-            placeholder="Select start date"
-          />
-
-          <PHDatePicker
-            name="endDate"
-            label="End Date"
-            placeholder="Select end date"
-          />
-
-          <PHInput
-            type="text"
-            name="minCredit"
-            label="Min Credit"
-            placeholder="Min credit"
+            options={academicSemesterOptions}
           />
 
           <PHInput
