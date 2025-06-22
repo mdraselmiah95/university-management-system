@@ -62,6 +62,8 @@ const OfferCourse = () => {
 
           <PHInput disabled={!id} type="text" name="test" label="Test" />
 
+          <PHInput type="text" name="section" label="Section" />
+          <PHInput type="text" name="maxCapacity" label="Max Capacity" />
           <PHTimePicker name="startTime" label="Start Time" />
           <PHTimePicker name="endTime" label="End Time" />
 
