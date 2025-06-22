@@ -22,6 +22,9 @@ const offerCourseData = {
 
 const OfferCourse = () => {
   const [id, setId] = useState("");
+
+  console.log("Inside parent component", id);
+
   const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);
 
   const academicSemesterOptions = academicFacultyData?.data?.map((item) => ({
@@ -56,12 +59,7 @@ const OfferCourse = () => {
             options={academicSemesterOptions}
           />
 
-          <PHInput
-            type="text"
-            name="maxCredit"
-            label="Max Credit"
-            placeholder="Max credit"
-          />
+          <PHInput disabled={!id} type="text" name="test" label="Test" />
 
           <Button htmlType="submit" type="primary">
             Submit
