@@ -39,6 +39,8 @@ const OfferCourse = () => {
     { name: "status", value: "UPCOMING" },
   ]);
 
+  console.log({ semesterRegistrationData });
+
   const { data: academicDepartmentsData } =
     useGetAcademicDepartmentsQuery(undefined);
   const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);
@@ -57,6 +59,13 @@ const OfferCourse = () => {
     (item) => ({
       value: item._id,
       label: item.name,
+    })
+  );
+
+  const semesterRegistrationOptions = semesterRegistrationData?.data?.map(
+    (item) => ({
+      value: item._id,
+      label: `${item.academicSemester.name} - ${item.academicSemester.year}`,
     })
   );
 
@@ -96,7 +105,7 @@ const OfferCourse = () => {
           <PHSelect
             label="Semester Registration"
             name="semesterRegistration"
-            options={academicDepartmentOptions}
+            options={semesterRegistrationOptions}
           />
           <PHSelectWithWatch
             onValueChange={setId}
