@@ -13,6 +13,7 @@ import PHTimePicker from "../../../components/form/PHTimePicker";
 import { weekDaysOptions } from "../../../constants/globals";
 import {
   useGetAllCoursesQuery,
+  useGetAllRegisteredSemestersQuery,
   useGetCourseFacultiesQuery,
 } from "../../../redux/features/admin/courseManagement.api";
 
@@ -32,6 +33,11 @@ const offerCourseData = {
 const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");
   const [id, setId] = useState("");
+
+  const { data: semesterRegistrationData } = useGetAllRegisteredSemestersQuery([
+    { name: "sort", value: "year" },
+    { name: "status", value: "UPCOMING" },
+  ]);
 
   const { data: academicDepartmentsData } =
     useGetAcademicDepartmentsQuery(undefined);
@@ -87,6 +93,11 @@ const OfferCourse = () => {
           onSubmit={onSubmit}
           // resolver={zodResolver(academicSemesterSchema)}
         >
+          <PHSelect
+            label="Semester Registration"
+            name="semesterRegistration"
+            options={academicDepartmentOptions}
+          />
           <PHSelectWithWatch
             onValueChange={setId}
             label="Academic Faculty"
