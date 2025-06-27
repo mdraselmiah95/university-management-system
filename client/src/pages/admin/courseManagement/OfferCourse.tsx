@@ -75,7 +75,7 @@ const OfferCourse = () => {
   }));
 
   const { data: facultiesData, isFetching: fetchingFaculties } =
-    useGetCourseFacultiesQuery(courseId);
+    useGetCourseFacultiesQuery(courseId, { skip: !courseId });
 
   const facultyOptions = facultiesData?.data?.faculties?.map((item) => ({
     value: item._id,
