@@ -87,13 +87,18 @@ const OfferCourse = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Creating Offer Course...");
+    const finalData = {
+      ...data,
+      section: Number(data.section),
+      maxCapacity: Number(data.maxCapacity),
+    };
     try {
-      const res = await createOfferedCourse(data);
+      const res = await createOfferedCourse(finalData);
       if (res?.error) {
         toast.error(res?.error?.data?.message, { id: toastId });
       } else {
         toast.success(res?.data?.message, { id: toastId });
-        navigate("/admin/academic-faculty");
+        navigate("/admin/offered-courses");
       }
     } catch (error) {
       toast.error("Something went wrong", { id: toastId });
