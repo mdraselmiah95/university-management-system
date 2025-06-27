@@ -12,10 +12,13 @@ import { useState } from "react";
 import PHTimePicker from "../../../components/form/PHTimePicker";
 import { weekDaysOptions } from "../../../constants/globals";
 import {
+  useCreateOfferedCourseMutation,
   useGetAllCoursesQuery,
   useGetAllRegisteredSemestersQuery,
   useGetCourseFacultiesQuery,
 } from "../../../redux/features/admin/courseManagement.api";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const offerCourseData = {
   semesterRegistration: "65b6185f13c0a33cdf61589a",
@@ -33,13 +36,13 @@ const offerCourseData = {
 const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");
   const [id, setId] = useState("");
+  const navigate = useNavigate();
+  const [createOfferedCourse] = useCreateOfferedCourseMutation();
 
   const { data: semesterRegistrationData } = useGetAllRegisteredSemestersQuery([
     { name: "sort", value: "year" },
     { name: "status", value: "UPCOMING" },
   ]);
-
-  console.log({ semesterRegistrationData });
 
   const { data: academicDepartmentsData } =
     useGetAcademicDepartmentsQuery(undefined);
@@ -83,13 +86,24 @@ const OfferCourse = () => {
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log("Form submitted with data:", data);
+    const toastId = toast.loading("Creating Offer Course...");
+    try {
+      const res = await createOfferedCourse(data);
+      if (res?.error) {
+        toast.error(res?.error?.data?.message, { id: toastId });
+      } else {
+        toast.success(res?.data?.message, { id: toastId });
+        navigate("/admin/academic-faculty");
+      }
+    } catch (error) {
+      toast.error("Something went wrong", { id: toastId });
+    }
   };
 
   return (
     <div>
       <Card
-        title="Semester Registration"
+        title="Offer Course"
         style={{
           width: "auto",
           maxWidth: "400px",
