@@ -3,16 +3,30 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PHInput from "../components/form/PHInput";
 import PHForm from "../components/form/PHForm";
+import { useChangePasswordMutation } from "../redux/features/admin/userManagement.api";
+import { toast } from "sonner";
 
 const ChangePassword = () => {
+  const toastId = toast.loading("Changing Password...");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const defaultValues = {
     oldPassword: "student01",
   };
 
-  const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+  const [changePassword] = useChangePasswordMutation();
+
+  const onSubmit = async (data) => {
+    try {
+      const res = await changePassword(data).unwrap();
+      console.log({ res });
+    } catch (err) {
+      console.log({ err });
+      toast.error(`Something went wrong ${err}`, {
+        id: toastId,
+        duration: 2000,
+      });
+    }
   };
 
   return (
