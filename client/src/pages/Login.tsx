@@ -37,7 +37,12 @@ const Login = () => {
       );
 
       toast.success("Logged in", { id: toastId, duration: 2000 });
-      navigate(`/${user.role}/dashboard`);
+
+      if (res?.data?.needsPasswordChange) {
+        navigate(`/change-password`);
+      } else {
+        navigate(`/${user.role}/dashboard`);
+      }
     } catch (err) {
       console.log({ err });
       toast.error(`Something went wrong ${err}`, {
