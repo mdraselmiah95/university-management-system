@@ -30,3 +30,8 @@ export type TQueryParams = {
   name: string;
   value: boolean | React.Key;
 };
+
+export type TQueryParam = {
+  name: string;
+  value: boolean | React.Key;
+};
