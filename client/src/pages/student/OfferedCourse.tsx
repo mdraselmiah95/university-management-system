@@ -39,6 +39,7 @@ const OfferedCourse = () => {
   if (!modifiedData.length) {
     return <p>No available courses</p>;
   }
+
   return (
     <Row gutter={[0, 20]}>
       {modifiedData.map((item) => {
@@ -79,3 +80,23 @@ const OfferedCourse = () => {
 };
 
 export default OfferedCourse;
+
+// [
+//   { course: { title: 'React' }, section: 1, _id: 'sdfasdfasdfas45345' },
+//   { course: { title: 'React' }, section: 2, _id: 'sdfasdfasdfas45345' },
+//   { course: { title: 'Redux' }, section: 1, _id: 'sdfasdfasdfas45345' },
+// ];
+
+// [
+//   {
+//     courseTitle: 'React',
+//     sections: [
+//       { section: 1, _id: 'ADFa4345basdfa' },
+//       { section: 2, _id: 'ADFa4345basdf3' },
+//     ],
+//   },
+//   {
+//     courseTitle: 'Redux',
+//     sections: [{ section: 1, _id: 'ADFa4345basdfa' }],
+//   },
+// ];

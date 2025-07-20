@@ -23,22 +23,32 @@ const Login = () => {
     const toastId = toast.loading("Logging in");
     try {
       const userInfo = {
-        id: data.userId,
+        id: data.id,
         password: data.password,
       };
       const res = await login(userInfo).unwrap();
-
       const user = verifyToken(res.data.accessToken) as TUser;
-      dispatch(setUser({ user: user, token: res.data.accessToken }));
+
+      dispatch(
+        setUser({
+          user: user,
+          token: res.data.accessToken,
+        })
+      );
+
       toast.success("Logged in", { id: toastId, duration: 2000 });
 
-      if (res.data.needsPasswordChange) {
+      if (res?.data?.needsPasswordChange) {
         navigate(`/change-password`);
       } else {
         navigate(`/${user.role}/dashboard`);
       }
     } catch (err) {
-      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+      console.log({ err });
+      toast.error(`Something went wrong ${err}`, {
+        id: toastId,
+        duration: 2000,
+      });
     }
   };
 
