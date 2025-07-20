@@ -1,14 +1,14 @@
 import { Button, Card } from "antd";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import PHInput from "../components/form/PHInput";
 import PHForm from "../components/form/PHForm";
 import { useChangePasswordMutation } from "../redux/features/admin/userManagement.api";
 import { toast } from "sonner";
+import { logout } from "../redux/features/auth/authSlice";
 
 const ChangePassword = () => {
   const toastId = toast.loading("Changing Password...");
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const defaultValues = {
     oldPassword: "student01",
@@ -19,9 +19,15 @@ const ChangePassword = () => {
   const onSubmit = async (data) => {
     try {
       const res = await changePassword(data).unwrap();
-      console.log({ res });
+      if (res?.data?.success) {
+        dispatch(logout());
+        toast.success("Password changed successfully", {
+          id: toastId,
+          duration: 2000,
+        });
+        return <Navigate to="/login" replace />;
+      }
     } catch (err) {
-      console.log({ err });
       toast.error(`Something went wrong ${err}`, {
         id: toastId,
         duration: 2000,

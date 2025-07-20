@@ -35,6 +35,10 @@ const baseQueryWithRefreshToken: BaseQueryFn<
     toast.error(result.error.data.message);
   }
 
+  if (result?.error?.status === 403) {
+    toast.error(result.error.data.message);
+  }
+
   if (result?.error?.status === 401) {
     //* Sending new Refresh token
     const res = await fetch("http://localhost:8080/api/v1/auth/refresh-token", {
